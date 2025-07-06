@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/visualizer.dir/src/context.c.o CMakeFiles/visualizer.dir/src/input.c.o CMakeFiles/visualizer.dir/src/logic.c.o CMakeFiles/visualizer.dir/src/main.c.o CMakeFiles/visualizer.dir/src/render.c.o CMakeFiles/visualizer.dir/src/utils.c.o -o visualizer  -lallegro_font -lallegro_primitives -lallegro -lm 
