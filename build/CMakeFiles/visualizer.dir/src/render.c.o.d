@@ -103,7 +103,9 @@ CMakeFiles/visualizer.dir/src/render.c.o: \
  /usr/include/allegro5/threads.h /usr/include/allegro5/timer.h \
  /usr/include/allegro5/tls.h /usr/include/allegro5/alcompat.h \
  /usr/include/allegro5/platform/alunix.h \
+ /usr/include/allegro5/allegro_font.h \
  /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/context.h \
+ /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/logic.h \
  /usr/include/math.h /usr/include/x86_64-linux-gnu/bits/math-vector.h \
  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \

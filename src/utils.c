@@ -6,6 +6,7 @@
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
 
 void must_init(bool test, const char* description){
     if(test) return;
@@ -23,6 +24,7 @@ void init_sequence(ProgramContext* program){
     must_init(al_init(), "allegro");
     must_init(al_init_primitives_addon(), "primitives");
     must_init(al_init_font_addon(), "font");
+    must_init(al_init_ttf_addon(), "ttf addon");
     create_program_context(program);
 }
 

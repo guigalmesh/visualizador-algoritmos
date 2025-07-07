@@ -1,7 +1,22 @@
 #include "context.h"
+#include "logic.h"
 #include "utils.h"
+#include <stdlib.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+
+void create_color_palette(ColorPalette* palette){
+    palette->black = al_map_rgb(0, 0, 0);
+    palette->white = al_map_rgb(255, 255, 255);
+    palette->green = al_map_rgb(0, 255, 0);
+}
+
+void create_fonts(FontSet* fonts){
+    fonts->starmap_large = al_load_ttf_font("assets/starmap.ttf", 48, 0);
+    fonts->starmap_normal = al_load_ttf_font("assets/starmap.ttf", 24, 0);
+}
 
 void create_program_context(ProgramContext* program){
     al_set_new_display_flags(ALLEGRO_NOFRAME | ALLEGRO_WINDOWED);
@@ -25,6 +40,17 @@ void create_program_context(ProgramContext* program){
     program->logic_timer = logic_timer;
 
     program->program_running = true;
+
+    program->state = menu;
+
+    ColorPalette palette;
+    create_color_palette(&palette);
+    program->palette = palette;
+
+    FontSet* fonts = malloc(sizeof(FontSet));
+    must_init(fonts, "malloc fonts");
+    create_fonts(&fonts);
+    program->fonts = fonts;
 }
 
 void destroy_program_context(ProgramContext* program){

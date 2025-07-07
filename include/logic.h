@@ -3,6 +3,10 @@
 
 #include "context.h"
 
+enum ProgramState{
+    menu
+}ProgramState;
+
 void program_loop(ProgramContext* program);
 
 #endif

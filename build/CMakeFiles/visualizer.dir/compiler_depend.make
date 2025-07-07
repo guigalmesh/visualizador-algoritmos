@@ -138,8 +138,12 @@ CMakeFiles/visualizer.dir/src/context.c.o: /home/guigalmesh/Documentos/meus-codi
   /usr/include/allegro5/tls.h \
   /usr/include/allegro5/alcompat.h \
   /usr/include/allegro5/platform/alunix.h \
+  /usr/include/allegro5/allegro_font.h \
+  /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/logic.h \
+  /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/context.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/utils.h \
-  /usr/include/allegro5/allegro_primitives.h
+  /usr/include/allegro5/allegro_primitives.h \
+  /usr/include/allegro5/allegro_ttf.h
 
 CMakeFiles/visualizer.dir/src/input.c.o: /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/input.c \
   /usr/include/stdc-predef.h
@@ -281,6 +285,7 @@ CMakeFiles/visualizer.dir/src/logic.c.o: /home/guigalmesh/Documentos/meus-codigo
   /usr/include/allegro5/tls.h \
   /usr/include/allegro5/alcompat.h \
   /usr/include/allegro5/platform/alunix.h \
+  /usr/include/allegro5/allegro_font.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/utils.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/render.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/context.h
@@ -422,6 +427,7 @@ CMakeFiles/visualizer.dir/src/main.c.o: /home/guigalmesh/Documentos/meus-codigos
   /usr/include/allegro5/tls.h \
   /usr/include/allegro5/alcompat.h \
   /usr/include/allegro5/platform/alunix.h \
+  /usr/include/allegro5/allegro_font.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/utils.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/logic.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/context.h \
@@ -565,7 +571,9 @@ CMakeFiles/visualizer.dir/src/render.c.o: /home/guigalmesh/Documentos/meus-codig
   /usr/include/allegro5/tls.h \
   /usr/include/allegro5/alcompat.h \
   /usr/include/allegro5/platform/alunix.h \
+  /usr/include/allegro5/allegro_font.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/context.h \
+  /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/logic.h \
   /usr/include/math.h \
   /usr/include/x86_64-linux-gnu/bits/math-vector.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
@@ -714,6 +722,7 @@ CMakeFiles/visualizer.dir/src/utils.c.o: /home/guigalmesh/Documentos/meus-codigo
   /usr/include/allegro5/tls.h \
   /usr/include/allegro5/alcompat.h \
   /usr/include/allegro5/platform/alunix.h \
+  /usr/include/allegro5/allegro_font.h \
   /usr/include/stdio.h \
   /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
@@ -722,8 +731,7 @@ CMakeFiles/visualizer.dir/src/utils.c.o: /home/guigalmesh/Documentos/meus-codigo
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/allegro5/allegro_primitives.h \
-  /usr/include/allegro5/allegro_font.h
+  /usr/include/allegro5/allegro_primitives.h
 
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
@@ -754,13 +762,15 @@ CMakeFiles/visualizer.dir/src/utils.c.o: /home/guigalmesh/Documentos/meus-codigo
 
 /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/render.c:
 
-/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/logic.h:
-
 /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/main.c:
+
+/usr/include/allegro5/allegro_ttf.h:
 
 /usr/include/allegro5/allegro_primitives.h:
 
 /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/utils.h:
+
+/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/logic.h:
 
 /usr/include/allegro5/platform/alunix.h:
 

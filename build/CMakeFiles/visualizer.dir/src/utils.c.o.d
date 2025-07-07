@@ -102,7 +102,8 @@ CMakeFiles/visualizer.dir/src/utils.c.o: \
  /usr/include/allegro5/transformations.h /usr/include/allegro5/system.h \
  /usr/include/allegro5/threads.h /usr/include/allegro5/timer.h \
  /usr/include/allegro5/tls.h /usr/include/allegro5/alcompat.h \
- /usr/include/allegro5/platform/alunix.h /usr/include/stdio.h \
+ /usr/include/allegro5/platform/alunix.h \
+ /usr/include/allegro5/allegro_font.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
@@ -111,4 +112,4 @@ CMakeFiles/visualizer.dir/src/utils.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
  /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/allegro5/allegro_primitives.h \
- /usr/include/allegro5/allegro_font.h
+ /usr/include/allegro5/allegro_ttf.h
