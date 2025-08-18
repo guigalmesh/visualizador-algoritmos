@@ -19,12 +19,16 @@ typedef struct FontSet{
     ALLEGRO_FONT *starmap_normal;
 }FontSet;
 
+enum ProgramState{
+    MENU
+};
+
 typedef struct ProgramContext{
     ALLEGRO_DISPLAY *display;
     ALLEGRO_BITMAP *render_target;
     ALLEGRO_EVENT_QUEUE *queue;
     ALLEGRO_TIMER *logic_timer;
-    int state;
+    int programState;
     bool redraw;
     bool program_running;
     ColorPalette palette;

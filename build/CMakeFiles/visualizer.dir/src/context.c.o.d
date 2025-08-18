@@ -106,5 +106,12 @@ CMakeFiles/visualizer.dir/src/context.c.o: \
  /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/logic.h \
  /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/context.h \
  /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/utils.h \
+ /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/allegro5/allegro_primitives.h \
  /usr/include/allegro5/allegro_ttf.h

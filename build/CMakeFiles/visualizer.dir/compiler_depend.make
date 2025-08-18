@@ -731,7 +731,8 @@ CMakeFiles/visualizer.dir/src/utils.c.o: /home/guigalmesh/Documentos/meus-codigo
   /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
-  /usr/include/allegro5/allegro_primitives.h
+  /usr/include/allegro5/allegro_primitives.h \
+  /usr/include/allegro5/allegro_ttf.h
 
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:

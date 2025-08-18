@@ -201,6 +201,9 @@ pkgcfg_lib_ALLEGRO_allegro_font:FILEPATH=/usr/lib/x86_64-linux-gnu/liballegro_fo
 //Path to a library.
 pkgcfg_lib_ALLEGRO_allegro_primitives:FILEPATH=/usr/lib/x86_64-linux-gnu/liballegro_primitives.so
 
+//Path to a library.
+pkgcfg_lib_ALLEGRO_allegro_ttf:FILEPATH=/usr/lib/x86_64-linux-gnu/liballegro_ttf.so
+
 //Value Computed by CMake
 visualizer_BINARY_DIR:STATIC=/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/build
 
@@ -221,10 +224,10 @@ ALLEGRO_CFLAGS_OTHER:INTERNAL=
 ALLEGRO_FOUND:INTERNAL=1
 ALLEGRO_INCLUDEDIR:INTERNAL=
 ALLEGRO_INCLUDE_DIRS:INTERNAL=/usr/include/x86_64-linux-gnu
-ALLEGRO_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lallegro_font;-lallegro_primitives;-lallegro
+ALLEGRO_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lallegro_ttf;-lallegro_font;-lallegro_primitives;-lallegro
 ALLEGRO_LDFLAGS_OTHER:INTERNAL=
 ALLEGRO_LIBDIR:INTERNAL=
-ALLEGRO_LIBRARIES:INTERNAL=allegro_font;allegro_primitives;allegro
+ALLEGRO_LIBRARIES:INTERNAL=allegro_ttf;allegro_font;allegro_primitives;allegro
 ALLEGRO_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
 ALLEGRO_LIBS:INTERNAL=
 ALLEGRO_LIBS_L:INTERNAL=
@@ -236,10 +239,10 @@ ALLEGRO_STATIC_CFLAGS:INTERNAL=-I/usr/include/x86_64-linux-gnu
 ALLEGRO_STATIC_CFLAGS_I:INTERNAL=
 ALLEGRO_STATIC_CFLAGS_OTHER:INTERNAL=
 ALLEGRO_STATIC_INCLUDE_DIRS:INTERNAL=/usr/include/x86_64-linux-gnu
-ALLEGRO_STATIC_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lallegro_font;-lallegro_primitives;-lallegro
+ALLEGRO_STATIC_LDFLAGS:INTERNAL=-L/usr/lib/x86_64-linux-gnu;-lallegro_ttf;-lallegro_font;-lallegro_primitives;-lallegro
 ALLEGRO_STATIC_LDFLAGS_OTHER:INTERNAL=
 ALLEGRO_STATIC_LIBDIR:INTERNAL=
-ALLEGRO_STATIC_LIBRARIES:INTERNAL=allegro_font;allegro_primitives;allegro
+ALLEGRO_STATIC_LIBRARIES:INTERNAL=allegro_ttf;allegro_font;allegro_primitives;allegro
 ALLEGRO_STATIC_LIBRARY_DIRS:INTERNAL=/usr/lib/x86_64-linux-gnu
 ALLEGRO_STATIC_LIBS:INTERNAL=
 ALLEGRO_STATIC_LIBS_L:INTERNAL=
@@ -261,6 +264,11 @@ ALLEGRO_allegro_primitives-5_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
 ALLEGRO_allegro_primitives-5_MODULE_NAME:INTERNAL=allegro_primitives-5
 ALLEGRO_allegro_primitives-5_PREFIX:INTERNAL=/usr
 ALLEGRO_allegro_primitives-5_VERSION:INTERNAL=5.2.8
+ALLEGRO_allegro_ttf-5_INCLUDEDIR:INTERNAL=/usr/include
+ALLEGRO_allegro_ttf-5_LIBDIR:INTERNAL=/usr/lib/x86_64-linux-gnu
+ALLEGRO_allegro_ttf-5_MODULE_NAME:INTERNAL=allegro_ttf-5
+ALLEGRO_allegro_ttf-5_PREFIX:INTERNAL=/usr
+ALLEGRO_allegro_ttf-5_VERSION:INTERNAL=5.2.8
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -396,7 +404,7 @@ PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
-__pkg_config_arguments_ALLEGRO:INTERNAL=REQUIRED;allegro-5;allegro_font-5;allegro_primitives-5
+__pkg_config_arguments_ALLEGRO:INTERNAL=REQUIRED;allegro-5;allegro_font-5;allegro_ttf-5;allegro_primitives-5
 __pkg_config_checked_ALLEGRO:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_ALLEGRO_allegro
 pkgcfg_lib_ALLEGRO_allegro-ADVANCED:INTERNAL=1
@@ -404,5 +412,7 @@ pkgcfg_lib_ALLEGRO_allegro-ADVANCED:INTERNAL=1
 pkgcfg_lib_ALLEGRO_allegro_font-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: pkgcfg_lib_ALLEGRO_allegro_primitives
 pkgcfg_lib_ALLEGRO_allegro_primitives-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_ALLEGRO_allegro_ttf
+pkgcfg_lib_ALLEGRO_allegro_ttf-ADVANCED:INTERNAL=1
 prefix_result:INTERNAL=/usr/lib/x86_64-linux-gnu
 

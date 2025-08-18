@@ -5,15 +5,21 @@ project(visualizer C)
 # Use o padrão C99
 set(CMAKE_C_STANDARD 99)
 
-# Adiciona os arquivos-fonte
-file(GLOB SOURCES "src/*.c")
+set(SOURCES
+    src/main.c
+    src/context.c
+    src/input.c
+    src/logic.c
+    src/render.c
+    src/utils.c
+)
 
 # Adiciona os headers
 include_directories(include)
 
 # Encontra as libs do Allegro (você precisa do pkg-config funcionando)
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(ALLEGRO REQUIRED allegro-5 allegro_font-5 allegro_primitives-5)
+pkg_check_modules(ALLEGRO REQUIRED allegro-5 allegro_font-5 allegro_ttf-5 allegro_primitives-5)
 
 include_directories(${ALLEGRO_INCLUDE_DIRS})
 link_directories(${ALLEGRO_LIBRARY_DIRS})

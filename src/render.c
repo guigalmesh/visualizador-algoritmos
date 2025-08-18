@@ -31,8 +31,8 @@ void draw_menu(ProgramContext* program){
 
 void program_render(ProgramContext* program){
     al_set_target_bitmap(program->render_target);
-    switch(program->state){
-        case menu:
+    switch(program->programState){
+        case MENU:
             draw_menu(program);
             break;
     }

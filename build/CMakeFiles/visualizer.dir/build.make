@@ -69,10 +69,24 @@ include CMakeFiles/visualizer.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/visualizer.dir/flags.make
 
+CMakeFiles/visualizer.dir/src/main.c.o: CMakeFiles/visualizer.dir/flags.make
+CMakeFiles/visualizer.dir/src/main.c.o: /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/main.c
+CMakeFiles/visualizer.dir/src/main.c.o: CMakeFiles/visualizer.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/visualizer.dir/src/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/visualizer.dir/src/main.c.o -MF CMakeFiles/visualizer.dir/src/main.c.o.d -o CMakeFiles/visualizer.dir/src/main.c.o -c /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/main.c
+
+CMakeFiles/visualizer.dir/src/main.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/visualizer.dir/src/main.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/main.c > CMakeFiles/visualizer.dir/src/main.c.i
+
+CMakeFiles/visualizer.dir/src/main.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/visualizer.dir/src/main.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/main.c -o CMakeFiles/visualizer.dir/src/main.c.s
+
 CMakeFiles/visualizer.dir/src/context.c.o: CMakeFiles/visualizer.dir/flags.make
 CMakeFiles/visualizer.dir/src/context.c.o: /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/context.c
 CMakeFiles/visualizer.dir/src/context.c.o: CMakeFiles/visualizer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/visualizer.dir/src/context.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/visualizer.dir/src/context.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/visualizer.dir/src/context.c.o -MF CMakeFiles/visualizer.dir/src/context.c.o.d -o CMakeFiles/visualizer.dir/src/context.c.o -c /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/context.c
 
 CMakeFiles/visualizer.dir/src/context.c.i: cmake_force
@@ -86,7 +100,7 @@ CMakeFiles/visualizer.dir/src/context.c.s: cmake_force
 CMakeFiles/visualizer.dir/src/input.c.o: CMakeFiles/visualizer.dir/flags.make
 CMakeFiles/visualizer.dir/src/input.c.o: /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/input.c
 CMakeFiles/visualizer.dir/src/input.c.o: CMakeFiles/visualizer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/visualizer.dir/src/input.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/visualizer.dir/src/input.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/visualizer.dir/src/input.c.o -MF CMakeFiles/visualizer.dir/src/input.c.o.d -o CMakeFiles/visualizer.dir/src/input.c.o -c /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/input.c
 
 CMakeFiles/visualizer.dir/src/input.c.i: cmake_force
@@ -100,7 +114,7 @@ CMakeFiles/visualizer.dir/src/input.c.s: cmake_force
 CMakeFiles/visualizer.dir/src/logic.c.o: CMakeFiles/visualizer.dir/flags.make
 CMakeFiles/visualizer.dir/src/logic.c.o: /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/logic.c
 CMakeFiles/visualizer.dir/src/logic.c.o: CMakeFiles/visualizer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/visualizer.dir/src/logic.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/visualizer.dir/src/logic.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/visualizer.dir/src/logic.c.o -MF CMakeFiles/visualizer.dir/src/logic.c.o.d -o CMakeFiles/visualizer.dir/src/logic.c.o -c /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/logic.c
 
 CMakeFiles/visualizer.dir/src/logic.c.i: cmake_force
@@ -110,20 +124,6 @@ CMakeFiles/visualizer.dir/src/logic.c.i: cmake_force
 CMakeFiles/visualizer.dir/src/logic.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/visualizer.dir/src/logic.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/logic.c -o CMakeFiles/visualizer.dir/src/logic.c.s
-
-CMakeFiles/visualizer.dir/src/main.c.o: CMakeFiles/visualizer.dir/flags.make
-CMakeFiles/visualizer.dir/src/main.c.o: /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/main.c
-CMakeFiles/visualizer.dir/src/main.c.o: CMakeFiles/visualizer.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/visualizer.dir/src/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/visualizer.dir/src/main.c.o -MF CMakeFiles/visualizer.dir/src/main.c.o.d -o CMakeFiles/visualizer.dir/src/main.c.o -c /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/main.c
-
-CMakeFiles/visualizer.dir/src/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/visualizer.dir/src/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/main.c > CMakeFiles/visualizer.dir/src/main.c.i
-
-CMakeFiles/visualizer.dir/src/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/visualizer.dir/src/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/main.c -o CMakeFiles/visualizer.dir/src/main.c.s
 
 CMakeFiles/visualizer.dir/src/render.c.o: CMakeFiles/visualizer.dir/flags.make
 CMakeFiles/visualizer.dir/src/render.c.o: /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/src/render.c
@@ -155,20 +155,20 @@ CMakeFiles/visualizer.dir/src/utils.c.s: cmake_force
 
 # Object files for target visualizer
 visualizer_OBJECTS = \
+"CMakeFiles/visualizer.dir/src/main.c.o" \
 "CMakeFiles/visualizer.dir/src/context.c.o" \
 "CMakeFiles/visualizer.dir/src/input.c.o" \
 "CMakeFiles/visualizer.dir/src/logic.c.o" \
-"CMakeFiles/visualizer.dir/src/main.c.o" \
 "CMakeFiles/visualizer.dir/src/render.c.o" \
 "CMakeFiles/visualizer.dir/src/utils.c.o"
 
 # External object files for target visualizer
 visualizer_EXTERNAL_OBJECTS =
 
+visualizer: CMakeFiles/visualizer.dir/src/main.c.o
 visualizer: CMakeFiles/visualizer.dir/src/context.c.o
 visualizer: CMakeFiles/visualizer.dir/src/input.c.o
 visualizer: CMakeFiles/visualizer.dir/src/logic.c.o
-visualizer: CMakeFiles/visualizer.dir/src/main.c.o
 visualizer: CMakeFiles/visualizer.dir/src/render.c.o
 visualizer: CMakeFiles/visualizer.dir/src/utils.c.o
 visualizer: CMakeFiles/visualizer.dir/build.make
