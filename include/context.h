@@ -15,6 +15,7 @@ typedef struct ColorPalette{
 }ColorPalette;
 
 typedef struct FontSet{
+    ALLEGRO_FONT *debug_font;
     ALLEGRO_FONT *starmap_large;
     ALLEGRO_FONT *starmap_normal;
 }FontSet;
