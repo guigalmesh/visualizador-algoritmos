@@ -17,9 +17,9 @@ void create_color_palette(ColorPalette* palette){
 void create_fonts(FontSet* fonts){
     fonts->debug_font = al_create_builtin_font();
     must_init(fonts->debug_font, "debug_font");
-    fonts->starmap_large = al_load_ttf_font("starmap.TTF", 48, 0);
+    fonts->starmap_large = al_load_ttf_font("assets/starmap.TTF", 48, 0);
     must_init(fonts->starmap_large, "starmap_large");
-    fonts->starmap_normal = al_load_ttf_font("starmap.TTF", 24, 0);
+    fonts->starmap_normal = al_load_ttf_font("assets/starmap.TTF", 24, 0);
     must_init(fonts->starmap_normal, "starmap_normal");
 }
 

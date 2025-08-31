@@ -26,17 +26,18 @@ void draw_scaled_render_target(ProgramContext* program){
 }
 
 void draw_menu(ProgramContext* program){
-    al_draw_text(program->fonts->starmap_large, program->palette.black, 300, 300, ALLEGRO_ALIGN_CENTER, "VISUALIZER");
+    al_draw_text(program->fonts->starmap_large, program->palette.black, 
+        LOGICAL_WIDTH / 2, LOGICAL_HEIGHT / 2, ALLEGRO_ALIGN_CENTER, "VISUALIZER");
 }
 
 void program_render(ProgramContext* program){
     al_set_target_bitmap(program->render_target);
+    al_clear_to_color(program->palette.white);
     switch(program->programState){
         case MENU:
             draw_menu(program);
             break;
     }
-    al_clear_to_color(program->palette.white);
     al_set_target_backbuffer(program->display);
     draw_scaled_render_target(program);
     al_flip_display();
