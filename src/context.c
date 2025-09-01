@@ -3,10 +3,26 @@
 #include "utils.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+
+void create_user_interface(ProgramContext* program){
+    //Título "VISUALIZER"
+    strcpy(program->elements[VISUALIZER].text, "VISUALIZER");
+    program->elements[VISUALIZER].x = LOGICAL_WIDTH * 0.50f;
+    program->elements[VISUALIZER].y = LOGICAL_HEIGHT * 0.25f;
+    //Botão "BUBBLE SORT"
+    strcpy(program->elements[BUBBLE_SORT].text, "BUBBLE SORT");
+    program->elements[BUBBLE_SORT].x = LOGICAL_WIDTH * 0.50f;
+    program->elements[BUBBLE_SORT].y = LOGICAL_HEIGHT * 0.35f;
+    //Botão "SELECTION SORT"
+    strcpy(program->elements[SELECTION_SORT].text, "SELECTION SORT");
+    program->elements[SELECTION_SORT].x = LOGICAL_WIDTH * 0.50f;
+    program->elements[SELECTION_SORT].y = LOGICAL_HEIGHT * 0.45f;
+}
 
 void create_color_palette(ColorPalette* palette){
     palette->black = al_map_rgb(0, 0, 0);
@@ -51,6 +67,8 @@ void create_program_context(ProgramContext* program){
     ColorPalette palette;
     create_color_palette(&palette);
     program->palette = palette;
+
+    create_user_interface(program);
 
     FontSet* fonts = malloc(sizeof(FontSet));
     must_init(fonts, "malloc fonts");

@@ -26,8 +26,30 @@ void draw_scaled_render_target(ProgramContext* program){
 }
 
 void draw_menu(ProgramContext* program){
-    al_draw_text(program->fonts->starmap_large, program->palette.black, 
-        LOGICAL_WIDTH / 2, LOGICAL_HEIGHT / 2, ALLEGRO_ALIGN_CENTER, "VISUALIZER");
+    ALLEGRO_FONT* starmap_large = program->fonts->starmap_large;
+    ALLEGRO_FONT* starmap_normal = program->fonts->starmap_normal;
+    ALLEGRO_COLOR black = program->palette.black;
+    //Titulo "VISUALIZER"
+    UIElements* title = &program->elements[VISUALIZER];
+    al_draw_text(starmap_large, 
+        black, 
+        title->x, title->y, 
+        ALLEGRO_ALIGN_CENTER, 
+        title->text);
+    //Botão "BUBBLE SORT"
+    UIElements* bubbleSort = &program->elements[BUBBLE_SORT];
+    al_draw_text(starmap_normal, 
+        black, 
+        bubbleSort->x, bubbleSort->y, 
+        ALLEGRO_ALIGN_CENTER, 
+        bubbleSort->text);
+    //Botão "SELECTION SORT"
+    UIElements* selectionSort = &program->elements[SELECTION_SORT];
+    al_draw_text(starmap_normal, 
+        black, 
+        selectionSort->x, selectionSort->y, 
+        ALLEGRO_ALIGN_CENTER, 
+        selectionSort->text);
 }
 
 void program_render(ProgramContext* program){
