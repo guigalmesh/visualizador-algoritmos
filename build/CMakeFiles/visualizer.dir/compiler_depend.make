@@ -582,6 +582,7 @@ CMakeFiles/visualizer.dir/src/render.c.o: /home/guigalmesh/Documentos/meus-codig
   /usr/include/allegro5/allegro_font.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/context.h \
   /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/logic.h \
+  /home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include/utils.h \
   /usr/include/math.h \
   /usr/include/x86_64-linux-gnu/bits/math-vector.h \
   /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
