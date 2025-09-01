@@ -3,6 +3,8 @@
 #include "logic.h"
 #include "utils.h"
 #include <math.h>
+#include <stdio.h>
+#include <stdbool.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 
@@ -26,31 +28,19 @@ void draw_scaled_render_target(ProgramContext* program){
         offset_x, offset_y, scaled_w, scaled_h, 0);
 }
 
-void draw_text_selection(ProgramContext* program, UIElements* element){
-    ALLEGRO_FONT* starmap_normal_s = program->fonts->starmap_normal_s;
-    ALLEGRO_FONT* starmap_normal = program->fonts->starmap_normal;
-    ALLEGRO_COLOR black = program->palette.black;
-    //Botão "BUBBLE SORT"
-    if(mouse_isHovering(program, 100, 100, 500, 500)){
-        al_draw_text(starmap_normal_s, 
-            black, 
-            element->x, element->y, 
-            ALLEGRO_ALIGN_CENTER, 
-            element->text);
-    }
-    else{
-        al_draw_text(starmap_normal, 
-            black, 
-            element->x, element->y, 
-            ALLEGRO_ALIGN_CENTER, 
-            element->text);
-    }
+void draw_button(ProgramContext* program, UIElements* elements, int element){
+    ALLEGRO_FONT* font = mouse_isHovering_button(program, elements, element) ?
+    elements[element].UIfont_s : elements[element].UIfont;
+    al_draw_text(font, elements[element].color, 
+        elements[element].x, elements[element].y, 
+        ALLEGRO_ALIGN_CENTER, elements[element].text);
 }
 
 void draw_menu(ProgramContext* program){
     ALLEGRO_FONT* starmap_large = program->fonts->starmap_large;
     ALLEGRO_FONT* starmap_normal = program->fonts->starmap_normal;
     ALLEGRO_COLOR black = program->palette.black;
+    UIElements* elements = program->elements;
     //Titulo "VISUALIZER"
     UIElements* title = &program->elements[VISUALIZER];
     al_draw_text(starmap_large, 
@@ -59,22 +49,9 @@ void draw_menu(ProgramContext* program){
         ALLEGRO_ALIGN_CENTER, 
         title->text);
     //Botão "BUBBLE SORT"
-    UIElements* bubbleSort = &program->elements[BUBBLE_SORT];
-    /*UIElements* bubbleSort = &program->elements[BUBBLE_SORT];
-    al_draw_text(starmap_normal, 
-        black, 
-        bubbleSort->x, bubbleSort->y, 
-        ALLEGRO_ALIGN_CENTER, 
-        bubbleSort->text);
-    */
-   draw_text_selection(program, bubbleSort);    
-    //Botão "SELECTION SORT"
-    UIElements* selectionSort = &program->elements[SELECTION_SORT];
-    al_draw_text(starmap_normal, 
-        black, 
-        selectionSort->x, selectionSort->y, 
-        ALLEGRO_ALIGN_CENTER, 
-        selectionSort->text);
+    draw_button(program, elements, BUBBLE_SORT);
+    //Botão "INSERTION SORT"
+    draw_button(program, elements, INSERTION_SORT);
 }
 
 void draw_bubble(ProgramContext* program){
@@ -89,13 +66,16 @@ void program_render(ProgramContext* program){
     al_set_target_bitmap(program->render_target);
     al_clear_to_color(program->palette.white);
     switch(program->programState){
-        case MENU:
+        case MENU_STATE:
             draw_menu(program);
+            al_draw_textf(program->fonts->debug_font, 
+                program->palette.black, 75, 75, ALLEGRO_ALIGN_CENTER, "x = %.2f y = %.2f", 
+                program->mouse_x, program->mouse_y);
             break;
-        case BUBBLE:
+        case BUBBLE_STATE:
             draw_bubble(program);
             break;
-        case INSERTION:
+        case INSERTION_STATE:
             draw_insertion(program);
             break;
     }

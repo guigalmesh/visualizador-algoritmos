@@ -30,11 +30,23 @@ void init_sequence(ProgramContext* program){
     create_program_context(program);
 }
 
-bool mouse_isHovering(ProgramContext* program, float x1, float y1, float x2, float y2){
-    if(program->mouse_x >= x1 && program->mouse_y >= y1
-    && program->mouse_x <= x2 && program->mouse_y <= y2)
+bool mouse_isHovering_button(ProgramContext* program, UIElements* elements, int element){
+    if(program->mouse_x >= elements[element].x1 && program->mouse_y >= elements[element].y1 
+    && program->mouse_x <= elements[element].x2 && program->mouse_y <= elements[element].y2)
         return true;
-    else
-        return false;
+    return false;
+}
+
+void get_button_hitbox(UIElements* elements, int button){
+    int width = al_get_text_width(
+        elements[button].UIfont, 
+        elements[button].text);
+    int height = al_get_font_line_height(elements[button].UIfont);
+    elements[button].x1 = elements[button].x - (float)width / 2;
+    elements[button].y1 = elements[button].y - (float)height / 2;
+    elements[button].x2 = elements[button].x + (float)width / 2;
+    elements[button].y2 = elements[button].y + (float)height / 2;
+    printf("x = %.2f y = %.2f\n", elements[button].x, elements[button].y);
+    printf("x1 = %.2f, y1 = %.2f, x2 = %.2f, y2 = %.2f\n", elements[button].x1, elements[button].y1, elements[button].x2, elements[button].y2);
 }
 

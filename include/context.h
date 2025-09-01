@@ -26,22 +26,26 @@ typedef struct FontSet{
 
 //Botões e elementos em da UI
 typedef struct UIElements{
+    ALLEGRO_FONT *UIfont;
+    ALLEGRO_FONT *UIfont_s;
+    ALLEGRO_COLOR color;
     char text[100];
     float x, y;
     float width, height;
+    float x1, y1, x2, y2;
 }UIElements;
 
 enum UI_Names{
     VISUALIZER,
     BUBBLE_SORT,
-    SELECTION_SORT
+    INSERTION_SORT
 };
 
 //Estados do programa
 enum ProgramState{
-    MENU,
-    BUBBLE,
-    INSERTION
+    MENU_STATE,
+    BUBBLE_STATE,
+    INSERTION_STATE
 };
 
 //Struct que contém as informações do programa, é passado em toda função
@@ -57,6 +61,7 @@ typedef struct ProgramContext{
     ColorPalette palette;
     FontSet *fonts;
     float mouse_x, mouse_y;
+    int screen_w, screen_h;
 }ProgramContext;
 
 //Carrega os elementos da UI

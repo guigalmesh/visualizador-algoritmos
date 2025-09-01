@@ -4,7 +4,7 @@
 #include "context.h"
 
 void draw_scaled_render_target(ProgramContext* program);
-void draw_text_selection(ProgramContext* program, UIElements* element);
+void draw_button(ProgramContext* program, UIElements* elements, int element);
 void draw_menu(ProgramContext* program);
 void draw_bubble(ProgramContext* program);
 void draw_insertion(ProgramContext* program);

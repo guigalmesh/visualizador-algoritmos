@@ -10,18 +10,30 @@
 #include <allegro5/allegro_ttf.h>
 
 void create_user_interface(ProgramContext* program){
+    UIElements* elements = program->elements;
     //Título "VISUALIZER"
-    strcpy(program->elements[VISUALIZER].text, "VISUALIZER");
-    program->elements[VISUALIZER].x = LOGICAL_WIDTH * 0.50f;
-    program->elements[VISUALIZER].y = LOGICAL_HEIGHT * 0.25f;
+    strcpy(elements[VISUALIZER].text, "VISUALIZER");
+    elements[VISUALIZER].x = program->screen_w * 0.50f;
+    printf("visualizer x: %f\n", elements[VISUALIZER].x);
+    elements[VISUALIZER].y = program->screen_h * 0.25f;
+    elements[VISUALIZER].UIfont = program->fonts->starmap_large;
     //Botão "BUBBLE SORT"
-    strcpy(program->elements[BUBBLE_SORT].text, "BUBBLE SORT");
-    program->elements[BUBBLE_SORT].x = LOGICAL_WIDTH * 0.50f;
-    program->elements[BUBBLE_SORT].y = LOGICAL_HEIGHT * 0.35f;
+    strcpy(elements[BUBBLE_SORT].text, "BUBBLE SORT");
+    elements[BUBBLE_SORT].x = program->screen_w * 0.50f;
+    printf("bubble sort x: %f\n", elements[BUBBLE_SORT].x);
+    elements[BUBBLE_SORT].y = program->screen_h * 0.35f;
+    elements[BUBBLE_SORT].UIfont = program->fonts->starmap_normal;
+    elements[BUBBLE_SORT].UIfont_s = program->fonts->starmap_normal_s;
+    elements[BUBBLE_SORT].color = program->palette.black;
+    get_button_hitbox(elements, BUBBLE_SORT);
     //Botão "SELECTION SORT"
-    strcpy(program->elements[SELECTION_SORT].text, "SELECTION SORT");
-    program->elements[SELECTION_SORT].x = LOGICAL_WIDTH * 0.50f;
-    program->elements[SELECTION_SORT].y = LOGICAL_HEIGHT * 0.45f;
+    strcpy(program->elements[INSERTION_SORT].text, "SELECTION SORT");
+    elements[INSERTION_SORT].x = program->screen_w * 0.50f;
+    elements[INSERTION_SORT].y = program->screen_h * 0.45f;
+    elements[INSERTION_SORT].UIfont = program->fonts->starmap_normal;
+    elements[INSERTION_SORT].UIfont_s = program->fonts->starmap_normal_s;
+    elements[INSERTION_SORT].color = program->palette.black;
+    get_button_hitbox(elements, INSERTION_SORT);
 }
 
 void create_color_palette(ColorPalette* palette){
@@ -47,6 +59,8 @@ void create_program_context(ProgramContext* program){
     al_get_monitor_info(0, &monitor_info);
     int screen_w = monitor_info.x2 - monitor_info.x1;
     int screen_h = monitor_info.y2 - monitor_info.y1;
+    program->screen_w = screen_w;
+    program->screen_h = screen_h;
     ALLEGRO_DISPLAY *display = al_create_display(screen_w, screen_h);
     must_init(display, "display");
     program->display = display;
@@ -64,18 +78,18 @@ void create_program_context(ProgramContext* program){
 
     program->program_running = true;
 
-    program->programState = MENU;
+    program->programState = MENU_STATE;
 
     ColorPalette palette;
     create_color_palette(&palette);
     program->palette = palette;
 
-    create_user_interface(program);
-
     FontSet* fonts = malloc(sizeof(FontSet));
     must_init(fonts, "malloc fonts");
     create_fonts(fonts);
     program->fonts = fonts;
+
+    create_user_interface(program);
 }
 
 void destroy_program_context(ProgramContext* program){
