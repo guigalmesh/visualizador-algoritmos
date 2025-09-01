@@ -30,3 +30,11 @@ void init_sequence(ProgramContext* program){
     create_program_context(program);
 }
 
+bool mouse_isHovering(ProgramContext* program, float x1, float y1, float x2, float y2){
+    if(program->mouse_x >= x1 && program->mouse_y >= y1
+    && program->mouse_x <= x2 && program->mouse_y <= y2)
+        return true;
+    else
+        return false;
+}
+

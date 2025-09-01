@@ -37,6 +37,8 @@ void create_fonts(FontSet* fonts){
     must_init(fonts->starmap_large, "starmap_large");
     fonts->starmap_normal = al_load_ttf_font("assets/starmap.TTF", 24, 0);
     must_init(fonts->starmap_normal, "starmap_normal");
+    fonts->starmap_normal_s = al_load_ttf_font("assets/starmap.TTF", 28, 0);
+    must_init(fonts->starmap_normal_s, "starmap_normal_s");
 }
 
 void create_program_context(ProgramContext* program){

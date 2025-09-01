@@ -21,6 +21,7 @@ typedef struct FontSet{
     ALLEGRO_FONT *debug_font;
     ALLEGRO_FONT *starmap_large;
     ALLEGRO_FONT *starmap_normal;
+    ALLEGRO_FONT *starmap_normal_s;
 }FontSet;
 
 //Botões e elementos em da UI
@@ -55,6 +56,7 @@ typedef struct ProgramContext{
     UIElements elements[MAX_ELEMENTS];
     ColorPalette palette;
     FontSet *fonts;
+    float mouse_x, mouse_y;
 }ProgramContext;
 
 //Carrega os elementos da UI

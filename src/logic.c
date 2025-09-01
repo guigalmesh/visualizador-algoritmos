@@ -15,6 +15,10 @@ void program_loop(ProgramContext* program){
             case ALLEGRO_EVENT_TIMER:
                 program->redraw = true;
                 break;
+            case ALLEGRO_EVENT_MOUSE_AXES:
+                program->mouse_x = event.mouse.x;
+                program->mouse_y = event.mouse.y;
+                break;
         }
         if(program->redraw && al_is_event_queue_empty(program->queue)){
             program_render(program);

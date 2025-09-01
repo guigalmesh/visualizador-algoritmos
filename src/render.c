@@ -1,6 +1,7 @@
 #include "render.h"
 #include "context.h"
 #include "logic.h"
+#include "utils.h"
 #include <math.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
@@ -25,6 +26,27 @@ void draw_scaled_render_target(ProgramContext* program){
         offset_x, offset_y, scaled_w, scaled_h, 0);
 }
 
+void draw_text_selection(ProgramContext* program, UIElements* element){
+    ALLEGRO_FONT* starmap_normal_s = program->fonts->starmap_normal_s;
+    ALLEGRO_FONT* starmap_normal = program->fonts->starmap_normal;
+    ALLEGRO_COLOR black = program->palette.black;
+    //Botão "BUBBLE SORT"
+    if(mouse_isHovering(program, 100, 100, 500, 500)){
+        al_draw_text(starmap_normal_s, 
+            black, 
+            element->x, element->y, 
+            ALLEGRO_ALIGN_CENTER, 
+            element->text);
+    }
+    else{
+        al_draw_text(starmap_normal, 
+            black, 
+            element->x, element->y, 
+            ALLEGRO_ALIGN_CENTER, 
+            element->text);
+    }
+}
+
 void draw_menu(ProgramContext* program){
     ALLEGRO_FONT* starmap_large = program->fonts->starmap_large;
     ALLEGRO_FONT* starmap_normal = program->fonts->starmap_normal;
@@ -38,11 +60,14 @@ void draw_menu(ProgramContext* program){
         title->text);
     //Botão "BUBBLE SORT"
     UIElements* bubbleSort = &program->elements[BUBBLE_SORT];
+    /*UIElements* bubbleSort = &program->elements[BUBBLE_SORT];
     al_draw_text(starmap_normal, 
         black, 
         bubbleSort->x, bubbleSort->y, 
         ALLEGRO_ALIGN_CENTER, 
         bubbleSort->text);
+    */
+   draw_text_selection(program, bubbleSort);    
     //Botão "SELECTION SORT"
     UIElements* selectionSort = &program->elements[SELECTION_SORT];
     al_draw_text(starmap_normal, 
@@ -57,7 +82,7 @@ void draw_bubble(ProgramContext* program){
 }
 
 void draw_insertion(ProgramContext* program){
-    
+
 }
 
 void program_render(ProgramContext* program){
