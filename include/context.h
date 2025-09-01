@@ -38,7 +38,9 @@ enum UI_Names{
 
 //Estados do programa
 enum ProgramState{
-    MENU
+    MENU,
+    BUBBLE,
+    INSERTION
 };
 
 //Struct que contém as informações do programa, é passado em toda função

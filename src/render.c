@@ -52,12 +52,26 @@ void draw_menu(ProgramContext* program){
         selectionSort->text);
 }
 
+void draw_bubble(ProgramContext* program){
+
+}
+
+void draw_insertion(ProgramContext* program){
+    
+}
+
 void program_render(ProgramContext* program){
     al_set_target_bitmap(program->render_target);
     al_clear_to_color(program->palette.white);
     switch(program->programState){
         case MENU:
             draw_menu(program);
+            break;
+        case BUBBLE:
+            draw_bubble(program);
+            break;
+        case INSERTION:
+            draw_insertion(program);
             break;
     }
     al_set_target_backbuffer(program->display);
