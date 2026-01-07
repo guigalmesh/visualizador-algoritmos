@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/guigalmesh/Documentos/meus-codigos/visualizadorAlgoritmos/include
+C_INCLUDES = -I/home/guigalmesh/Documentos/visualizador-algoritmos/include
 
 C_FLAGS = -std=gnu99
 

@@ -42,11 +42,9 @@ void get_button_hitbox(UIElements* elements, int button){
         elements[button].UIfont, 
         elements[button].text);
     int height = al_get_font_line_height(elements[button].UIfont);
-    elements[button].x1 = elements[button].x - (float)width / 2;
-    elements[button].y1 = elements[button].y - (float)height / 2;
-    elements[button].x2 = elements[button].x + (float)width / 2;
-    elements[button].y2 = elements[button].y + (float)height / 2;
-    printf("x = %.2f y = %.2f\n", elements[button].x, elements[button].y);
-    printf("x1 = %.2f, y1 = %.2f, x2 = %.2f, y2 = %.2f\n", elements[button].x1, elements[button].y1, elements[button].x2, elements[button].y2);
+    elements[button].x1 = elements[button].x_render - (float)width;
+    elements[button].y1 = elements[button].y_render - (float)height;
+    elements[button].x2 = elements[button].x_render + (float)width;
+    elements[button].y2 = elements[button].y_render + (float)height;
 }
 

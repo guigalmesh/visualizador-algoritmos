@@ -11,25 +11,32 @@
 
 void create_user_interface(ProgramContext* program){
     UIElements* elements = program->elements;
+
     //Título "VISUALIZER"
     strcpy(elements[VISUALIZER].text, "VISUALIZER");
-    elements[VISUALIZER].x = program->screen_w * 0.50f;
-    printf("visualizer x: %f\n", elements[VISUALIZER].x);
-    elements[VISUALIZER].y = program->screen_h * 0.25f;
+    elements[VISUALIZER].x = LOGICAL_WIDTH * 0.50f;
+    printf("visualizer testeteste x: %f\n", elements[VISUALIZER].x);
+    elements[VISUALIZER].y = LOGICAL_HEIGHT * 0.25f;
     elements[VISUALIZER].UIfont = program->fonts->starmap_large;
+
     //Botão "BUBBLE SORT"
     strcpy(elements[BUBBLE_SORT].text, "BUBBLE SORT");
-    elements[BUBBLE_SORT].x = program->screen_w * 0.50f;
+    elements[BUBBLE_SORT].x = LOGICAL_WIDTH * 0.50f;
+    elements[BUBBLE_SORT].x_render = program->screen_w * 0.50f;
     printf("bubble sort x: %f\n", elements[BUBBLE_SORT].x);
-    elements[BUBBLE_SORT].y = program->screen_h * 0.35f;
+    elements[BUBBLE_SORT].y = LOGICAL_HEIGHT * 0.35f;
+    elements[BUBBLE_SORT].y_render = program->screen_h * 0.35f;
     elements[BUBBLE_SORT].UIfont = program->fonts->starmap_normal;
     elements[BUBBLE_SORT].UIfont_s = program->fonts->starmap_normal_s;
     elements[BUBBLE_SORT].color = program->palette.black;
     get_button_hitbox(elements, BUBBLE_SORT);
+
     //Botão "SELECTION SORT"
     strcpy(program->elements[INSERTION_SORT].text, "SELECTION SORT");
-    elements[INSERTION_SORT].x = program->screen_w * 0.50f;
-    elements[INSERTION_SORT].y = program->screen_h * 0.45f;
+    elements[INSERTION_SORT].x = LOGICAL_WIDTH * 0.50f;
+    elements[INSERTION_SORT].x_render = program->screen_w * 0.50f;
+    elements[INSERTION_SORT].y = LOGICAL_HEIGHT * 0.45f;
+    elements[INSERTION_SORT].y_render = program->screen_h * 0.45f;
     elements[INSERTION_SORT].UIfont = program->fonts->starmap_normal;
     elements[INSERTION_SORT].UIfont_s = program->fonts->starmap_normal_s;
     elements[INSERTION_SORT].color = program->palette.black;

@@ -30,7 +30,7 @@ typedef struct UIElements{
     ALLEGRO_FONT *UIfont_s;
     ALLEGRO_COLOR color;
     char text[100];
-    float x, y;
+    float x, y, x_render, y_render;
     float width, height;
     float x1, y1, x2, y2;
 }UIElements;
