@@ -29,7 +29,7 @@ void draw_scaled_render_target(ProgramContext* program){
 }
 
 void draw_button(ProgramContext* program, UIElements* elements, int element){
-    ALLEGRO_FONT* font = mouse_isHovering_button(program, elements, element) ?
+    ALLEGRO_FONT* font = is_mouse_hovering_button(program, elements, element) ?
     elements[element].UIfont_s : elements[element].UIfont;
     al_draw_text(font, elements[element].color, 
         elements[element].x, elements[element].y, 

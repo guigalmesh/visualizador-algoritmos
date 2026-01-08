@@ -30,7 +30,7 @@ void init_sequence(ProgramContext* program){
     create_program_context(program);
 }
 
-bool mouse_isHovering_button(ProgramContext* program, UIElements* elements, int element){
+bool is_mouse_hovering_button(ProgramContext* program, UIElements* elements, int element){
     if(program->mouse_x >= elements[element].x1 && program->mouse_y >= elements[element].y1 
     && program->mouse_x <= elements[element].x2 && program->mouse_y <= elements[element].y2)
         return true;
