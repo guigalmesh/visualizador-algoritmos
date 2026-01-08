@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/visualizer.dir/src/context.c.o"
   "CMakeFiles/visualizer.dir/src/context.c.o.d"
-  "CMakeFiles/visualizer.dir/src/input.c.o"
-  "CMakeFiles/visualizer.dir/src/input.c.o.d"
+  "CMakeFiles/visualizer.dir/src/list.c.o"
+  "CMakeFiles/visualizer.dir/src/list.c.o.d"
   "CMakeFiles/visualizer.dir/src/logic.c.o"
   "CMakeFiles/visualizer.dir/src/logic.c.o.d"
   "CMakeFiles/visualizer.dir/src/main.c.o"

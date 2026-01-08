@@ -7,7 +7,7 @@
 void must_init(bool test, const char* description);
 void register_event_sources(ProgramContext* program);
 void init_sequence(ProgramContext* program);
-bool mouse_isHovering_button(ProgramContext* program, UIElements* elements, int element);
+bool is_mouse_hovering_button(ProgramContext* program, UIElements* elements, int element);
 void get_button_hitbox(UIElements* elements, int element);
 
 #endif

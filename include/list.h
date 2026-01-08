@@ -15,10 +15,12 @@ typedef struct Node{
 
 typedef struct List{
     int size;
-    Node* head;
+    Node *head;
 }List;
 
 List* lst_create();
-List* lst_insert(List* list, int number);
+List* lst_append(List* list, int value);
+List* lst_generate(int size, int min, int max);
+void lst_print(List* list);
 
 #endif

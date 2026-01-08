@@ -15,7 +15,6 @@ void create_user_interface(ProgramContext* program){
     //Título "VISUALIZER"
     strcpy(elements[VISUALIZER].text, "VISUALIZER");
     elements[VISUALIZER].x = LOGICAL_WIDTH * 0.50f;
-    printf("visualizer testeteste x: %f\n", elements[VISUALIZER].x);
     elements[VISUALIZER].y = LOGICAL_HEIGHT * 0.25f;
     elements[VISUALIZER].UIfont = program->fonts->starmap_large;
 
@@ -23,7 +22,6 @@ void create_user_interface(ProgramContext* program){
     strcpy(elements[BUBBLE_SORT].text, "BUBBLE SORT");
     elements[BUBBLE_SORT].x = LOGICAL_WIDTH * 0.50f;
     elements[BUBBLE_SORT].x_render = program->screen_w * 0.50f;
-    printf("bubble sort x: %f\n", elements[BUBBLE_SORT].x);
     elements[BUBBLE_SORT].y = LOGICAL_HEIGHT * 0.35f;
     elements[BUBBLE_SORT].y_render = program->screen_h * 0.35f;
     elements[BUBBLE_SORT].UIfont = program->fonts->starmap_normal;

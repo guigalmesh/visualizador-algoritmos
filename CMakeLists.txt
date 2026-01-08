@@ -8,7 +8,7 @@ set(CMAKE_C_STANDARD 99)
 set(SOURCES
     src/main.c
     src/context.c
-    src/input.c
+    src/list.c
     src/logic.c
     src/render.c
     src/utils.c

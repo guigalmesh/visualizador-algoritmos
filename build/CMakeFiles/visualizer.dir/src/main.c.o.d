@@ -106,4 +106,5 @@ CMakeFiles/visualizer.dir/src/main.c.o: \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/utils.h \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/logic.h \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/context.h \
- /home/guigalmesh/Documentos/visualizador-algoritmos/include/render.h
+ /home/guigalmesh/Documentos/visualizador-algoritmos/include/render.h \
+ /home/guigalmesh/Documentos/visualizador-algoritmos/include/list.h

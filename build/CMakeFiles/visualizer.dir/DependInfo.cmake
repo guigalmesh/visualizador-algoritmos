@@ -9,7 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/guigalmesh/Documentos/visualizador-algoritmos/src/context.c" "CMakeFiles/visualizer.dir/src/context.c.o" "gcc" "CMakeFiles/visualizer.dir/src/context.c.o.d"
-  "/home/guigalmesh/Documentos/visualizador-algoritmos/src/input.c" "CMakeFiles/visualizer.dir/src/input.c.o" "gcc" "CMakeFiles/visualizer.dir/src/input.c.o.d"
+  "/home/guigalmesh/Documentos/visualizador-algoritmos/src/list.c" "CMakeFiles/visualizer.dir/src/list.c.o" "gcc" "CMakeFiles/visualizer.dir/src/list.c.o.d"
   "/home/guigalmesh/Documentos/visualizador-algoritmos/src/logic.c" "CMakeFiles/visualizer.dir/src/logic.c.o" "gcc" "CMakeFiles/visualizer.dir/src/logic.c.o.d"
   "/home/guigalmesh/Documentos/visualizador-algoritmos/src/main.c" "CMakeFiles/visualizer.dir/src/main.c.o" "gcc" "CMakeFiles/visualizer.dir/src/main.c.o.d"
   "/home/guigalmesh/Documentos/visualizador-algoritmos/src/render.c" "CMakeFiles/visualizer.dir/src/render.c.o" "gcc" "CMakeFiles/visualizer.dir/src/render.c.o.d"

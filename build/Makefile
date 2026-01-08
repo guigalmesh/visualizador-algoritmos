@@ -153,29 +153,29 @@ src/context.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/visualizer.dir/build.make CMakeFiles/visualizer.dir/src/context.c.s
 .PHONY : src/context.c.s
 
-src/input.o: src/input.c.o
-.PHONY : src/input.o
+src/list.o: src/list.c.o
+.PHONY : src/list.o
 
 # target to build an object file
-src/input.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/visualizer.dir/build.make CMakeFiles/visualizer.dir/src/input.c.o
-.PHONY : src/input.c.o
+src/list.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/visualizer.dir/build.make CMakeFiles/visualizer.dir/src/list.c.o
+.PHONY : src/list.c.o
 
-src/input.i: src/input.c.i
-.PHONY : src/input.i
+src/list.i: src/list.c.i
+.PHONY : src/list.i
 
 # target to preprocess a source file
-src/input.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/visualizer.dir/build.make CMakeFiles/visualizer.dir/src/input.c.i
-.PHONY : src/input.c.i
+src/list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/visualizer.dir/build.make CMakeFiles/visualizer.dir/src/list.c.i
+.PHONY : src/list.c.i
 
-src/input.s: src/input.c.s
-.PHONY : src/input.s
+src/list.s: src/list.c.s
+.PHONY : src/list.s
 
 # target to generate assembly for a file
-src/input.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/visualizer.dir/build.make CMakeFiles/visualizer.dir/src/input.c.s
-.PHONY : src/input.c.s
+src/list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/visualizer.dir/build.make CMakeFiles/visualizer.dir/src/list.c.s
+.PHONY : src/list.c.s
 
 src/logic.o: src/logic.c.o
 .PHONY : src/logic.o
@@ -285,9 +285,9 @@ help:
 	@echo "... src/context.o"
 	@echo "... src/context.i"
 	@echo "... src/context.s"
-	@echo "... src/input.o"
-	@echo "... src/input.i"
-	@echo "... src/input.s"
+	@echo "... src/list.o"
+	@echo "... src/list.i"
+	@echo "... src/list.s"
 	@echo "... src/logic.o"
 	@echo "... src/logic.i"
 	@echo "... src/logic.s"
