@@ -39,6 +39,18 @@ void create_user_interface(ProgramContext* program){
     elements[INSERTION_SORT].UIfont_s = program->fonts->starmap_normal_s;
     elements[INSERTION_SORT].color = program->palette.black;
     get_button_hitbox(elements, INSERTION_SORT);
+
+    //Botão "BACK TO MENU"
+    strcpy(program->elements[BACK_TO_MENU].text, "BACK");
+    elements[BACK_TO_MENU].x = LOGICAL_WIDTH * 0.05f;
+    elements[BACK_TO_MENU].x_render = program->screen_w * 0.05f;
+    elements[BACK_TO_MENU].y = LOGICAL_HEIGHT * 0.10f;
+    elements[BACK_TO_MENU].y_render = program->screen_h * 0.10f;
+    elements[BACK_TO_MENU].UIfont = program->fonts->starmap_normal;
+    elements[BACK_TO_MENU].UIfont_s = program->fonts->starmap_normal_s;
+    elements[BACK_TO_MENU].color = program->palette.black;
+    get_button_hitbox(elements, BACK_TO_MENU);
+    
 }
 
 void create_color_palette(ColorPalette* palette){

@@ -55,11 +55,15 @@ void draw_menu(ProgramContext* program){
 }
 
 void draw_bubble(ProgramContext* program){
-
+    UIElements* elements = program->elements;
+    //Botão "BACK"
+    draw_button(program, elements, BACK_TO_MENU);
 }
 
 void draw_insertion(ProgramContext* program){
-
+    UIElements* elements = program->elements;
+    //Botão "BACK"
+    draw_button(program, elements, BACK_TO_MENU);
 }
 
 void program_render(ProgramContext* program){

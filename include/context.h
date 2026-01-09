@@ -38,7 +38,8 @@ typedef struct UIElements{
 enum UI_Names{
     VISUALIZER,
     BUBBLE_SORT,
-    INSERTION_SORT
+    INSERTION_SORT,
+    BACK_TO_MENU
 };
 
 //Estados do programa

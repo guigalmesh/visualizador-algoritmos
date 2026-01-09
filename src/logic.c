@@ -20,10 +20,21 @@ void program_loop(ProgramContext* program){
                 program->mouse_y = event.mouse.y;
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                if(is_mouse_hovering_button(program, program->elements, BUBBLE_SORT))
-                    program->programState = BUBBLE_STATE;
-                if(is_mouse_hovering_button(program, program->elements, INSERTION_SORT))
-                    program->programState = INSERTION_STATE;
+            // solução meio besta pro ghosting dos botões, melhorar depois
+                if(program->programState == MENU_STATE){
+                    if(is_mouse_hovering_button(program, program->elements, BUBBLE_SORT))
+                        program->programState = BUBBLE_STATE;
+                    if(is_mouse_hovering_button(program, program->elements, INSERTION_SORT))
+                        program->programState = INSERTION_STATE;
+                }
+                if(program->programState == BUBBLE_STATE){
+                    if(is_mouse_hovering_button(program, program->elements, BACK_TO_MENU))
+                        program->programState = MENU_STATE;
+                }
+                if(program->programState == INSERTION_STATE){
+                    if(is_mouse_hovering_button(program, program->elements, BACK_TO_MENU))
+                        program->programState = MENU_STATE;
+                }
                 break;
         }
         if(program->redraw && al_is_event_queue_empty(program->queue)){
