@@ -28,6 +28,11 @@ void draw_scaled_render_target(ProgramContext* program){
         offset_x, offset_y, scaled_w, scaled_h, 0);
 }
 
+void draw_box(Box* box){
+    al_draw_rectangle(box->x1, box->y1, box->x2, box->y2, al_map_rgb(0, 0, 0), 4);
+    al_draw_filled_rectangle(box->x1, box->y1, box->x2, box->y2, al_map_rgb(0, 255, 0));
+}
+
 void draw_button(ProgramContext* program, UIElements* elements, int element){
     ALLEGRO_FONT* font = is_mouse_hovering_button(program, elements, element) ?
     elements[element].UIfont_s : elements[element].UIfont;
@@ -58,6 +63,14 @@ void draw_bubble(ProgramContext* program){
     UIElements* elements = program->elements;
     //Botão "BACK"
     draw_button(program, elements, BACK_TO_MENU);
+
+    // BOX
+    List* list = program->number_list;
+    Node* p = list->head;
+    for(int i = 0; i < list->list_size; i++){
+        draw_box(p->box);
+        p = p->prox;
+    }
 }
 
 void draw_insertion(ProgramContext* program){
@@ -72,6 +85,7 @@ void program_render(ProgramContext* program){
     switch(program->programState){
         case MENU_STATE:
             draw_menu(program);
+            // debug, remover
             al_draw_textf(program->fonts->debug_font, 
                 program->palette.black, 75, 75, ALLEGRO_ALIGN_CENTER, "x = %.2f y = %.2f", 
                 program->mouse_x, program->mouse_y);

@@ -103,8 +103,9 @@ CMakeFiles/visualizer.dir/src/utils.c.o: \
  /usr/include/allegro5/threads.h /usr/include/allegro5/timer.h \
  /usr/include/allegro5/tls.h /usr/include/allegro5/alcompat.h \
  /usr/include/allegro5/platform/alunix.h \
- /usr/include/allegro5/allegro_font.h /usr/include/stdio.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/allegro5/allegro_font.h \
+ /home/guigalmesh/Documentos/visualizador-algoritmos/include/list.h \
+ /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \

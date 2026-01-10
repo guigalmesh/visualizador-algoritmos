@@ -2,6 +2,7 @@ CMakeFiles/visualizer.dir/src/render.c.o: \
  /home/guigalmesh/Documentos/visualizador-algoritmos/src/render.c \
  /usr/include/stdc-predef.h \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/render.h \
+ /home/guigalmesh/Documentos/visualizador-algoritmos/include/list.h \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/context.h \
  /usr/lib/gcc/x86_64-linux-gnu/12/include/stdbool.h \
  /usr/include/allegro5/allegro.h /usr/include/allegro5/base.h \

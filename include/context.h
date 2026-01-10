@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include "list.h"
 
 #define LOGICAL_WIDTH 1280
 #define LOGICAL_HEIGHT 720
@@ -63,6 +64,7 @@ typedef struct ProgramContext{
     FontSet *fonts;
     float mouse_x, mouse_y;
     int screen_w, screen_h;
+    List *number_list;
 }ProgramContext;
 
 //Carrega os elementos da UI

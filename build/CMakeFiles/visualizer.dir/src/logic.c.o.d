@@ -103,6 +103,7 @@ CMakeFiles/visualizer.dir/src/logic.c.o: \
  /usr/include/allegro5/tls.h /usr/include/allegro5/alcompat.h \
  /usr/include/allegro5/platform/alunix.h \
  /usr/include/allegro5/allegro_font.h \
+ /home/guigalmesh/Documentos/visualizador-algoritmos/include/list.h \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/utils.h \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/render.h \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/context.h

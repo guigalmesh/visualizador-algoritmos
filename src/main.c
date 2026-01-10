@@ -7,9 +7,6 @@
 
 int main(){
     ProgramContext program;
-    
-    List* list = lst_generate(10, 1, 10);
-    lst_print(list);
 
     init_sequence(&program);
 

@@ -1,9 +1,11 @@
 #ifndef RENDER_H
 #define RENDER_H
 
+#include "list.h"
 #include "context.h"
 
 void draw_scaled_render_target(ProgramContext* program);
+void draw_box(Box* box);
 void draw_button(ProgramContext* program, UIElements* elements, int element);
 void draw_menu(ProgramContext* program);
 void draw_bubble(ProgramContext* program);
