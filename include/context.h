@@ -25,6 +25,11 @@ typedef struct FontSet{
     ALLEGRO_FONT *starmap_normal_s;
 }FontSet;
 
+typedef struct ProgramContext ProgramContext;
+
+//Function pointer para a ação dos botões
+typedef void (*ButtonAction)(ProgramContext*);
+
 //Botões e elementos em da UI
 typedef struct UIElements{
     ALLEGRO_FONT *UIfont;
@@ -34,7 +39,10 @@ typedef struct UIElements{
     float x, y, x_render, y_render;
     float width, height;
     float x1, y1, x2, y2;
+    ButtonAction onClick;
 }UIElements;
+
+
 
 enum UI_Names{
     VISUALIZER,

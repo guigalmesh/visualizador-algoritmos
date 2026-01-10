@@ -27,8 +27,6 @@ Node* create_node(int value, int list_size){
     new_node->box->x2 = x2;
     new_node->box->y2 = y2;
 
-    printf("x1 %.1f y1 %.1f x2 %.1f y2 %.1f\n", x1, y1, x2, y2);
-
     return new_node;
 }
 

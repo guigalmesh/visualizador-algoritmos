@@ -3,6 +3,20 @@
 #include "render.h"
 #include <allegro5/allegro.h>
 
+void button_bubble_sort(ProgramContext* program){
+    program->programState = BUBBLE_STATE;
+    program->number_list = lst_generate(30, 1, 10);
+}
+
+void button_back_to_menu(ProgramContext* program){
+    program->programState = MENU_STATE;
+}
+
+void button_insertion_sort(ProgramContext* program){
+    program->programState = INSERTION_STATE;
+    program->number_list = lst_generate(30, 1, 10);
+}
+
 void program_loop(ProgramContext* program){
     ALLEGRO_EVENT event;
 
@@ -20,24 +34,13 @@ void program_loop(ProgramContext* program){
                 program->mouse_y = event.mouse.y;
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-            // isso aqui é horrivel, melhorar depois pra uma solução mais robusta
-                if(program->programState == MENU_STATE){
-                    if(is_mouse_hovering_button(program, program->elements, BUBBLE_SORT)){
-                        program->programState = BUBBLE_STATE;
-                        List* list = lst_generate(30, 1, 10);
-                        program->number_list = list;
-                        lst_print(list);
+                for(int i = 0; i < 4; i++){
+                    if(is_mouse_hovering_button(program, program->elements, i)){
+                        if(program->elements[i].onClick != NULL){
+                            program->elements[i].onClick(program);
+                            break;
+                        }
                     }
-                    if(is_mouse_hovering_button(program, program->elements, INSERTION_SORT))
-                        program->programState = INSERTION_STATE;
-                }
-                if(program->programState == BUBBLE_STATE){
-                    if(is_mouse_hovering_button(program, program->elements, BACK_TO_MENU))
-                        program->programState = MENU_STATE;
-                }
-                if(program->programState == INSERTION_STATE){
-                    if(is_mouse_hovering_button(program, program->elements, BACK_TO_MENU))
-                        program->programState = MENU_STATE;
                 }
                 break;
         }

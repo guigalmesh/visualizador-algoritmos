@@ -18,6 +18,8 @@ void create_user_interface(ProgramContext* program){
     elements[VISUALIZER].y = LOGICAL_HEIGHT * 0.25f;
     elements[VISUALIZER].UIfont = program->fonts->starmap_large;
 
+    // fazer uma função pra parametrizar a criação de botões
+
     //Botão "BUBBLE SORT"
     strcpy(elements[BUBBLE_SORT].text, "BUBBLE SORT");
     elements[BUBBLE_SORT].x = LOGICAL_WIDTH * 0.50f;
@@ -27,6 +29,7 @@ void create_user_interface(ProgramContext* program){
     elements[BUBBLE_SORT].UIfont = program->fonts->starmap_normal;
     elements[BUBBLE_SORT].UIfont_s = program->fonts->starmap_normal_s;
     elements[BUBBLE_SORT].color = program->palette.black;
+    elements[BUBBLE_SORT].onClick = button_bubble_sort;
     get_button_hitbox(elements, BUBBLE_SORT);
 
     //Botão "SELECTION SORT"
@@ -38,6 +41,7 @@ void create_user_interface(ProgramContext* program){
     elements[INSERTION_SORT].UIfont = program->fonts->starmap_normal;
     elements[INSERTION_SORT].UIfont_s = program->fonts->starmap_normal_s;
     elements[INSERTION_SORT].color = program->palette.black;
+    elements[INSERTION_SORT].onClick = button_insertion_sort;
     get_button_hitbox(elements, INSERTION_SORT);
 
     //Botão "BACK TO MENU"
@@ -49,6 +53,7 @@ void create_user_interface(ProgramContext* program){
     elements[BACK_TO_MENU].UIfont = program->fonts->starmap_normal;
     elements[BACK_TO_MENU].UIfont_s = program->fonts->starmap_normal_s;
     elements[BACK_TO_MENU].color = program->palette.black;
+    elements[BACK_TO_MENU].onClick = button_back_to_menu;
     get_button_hitbox(elements, BACK_TO_MENU);
     
 }

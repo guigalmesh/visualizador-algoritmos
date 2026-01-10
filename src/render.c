@@ -77,6 +77,14 @@ void draw_insertion(ProgramContext* program){
     UIElements* elements = program->elements;
     //Botão "BACK"
     draw_button(program, elements, BACK_TO_MENU);
+
+    // BOX
+    List* list = program->number_list;
+    Node* p = list->head;
+    for(int i = 0; i < list->list_size; i++){
+        draw_box(p->box);
+        p = p->prox;
+    }
 }
 
 void program_render(ProgramContext* program){
