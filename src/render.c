@@ -65,9 +65,8 @@ void draw_bubble(ProgramContext* program){
     draw_button(program, elements, BACK_TO_MENU);
 
     // BOX
-    List* list = program->number_list;
-    Node* p = list->head;
-    for(int i = 0; i < list->list_size; i++){
+    Node* p = program->number_list->head;
+    for(int i = 0; i < program->number_list->list_size; i++){
         draw_box(p->box);
         p = p->prox;
     }
@@ -93,10 +92,6 @@ void program_render(ProgramContext* program){
     switch(program->programState){
         case MENU_STATE:
             draw_menu(program);
-            // debug, remover
-            al_draw_textf(program->fonts->debug_font, 
-                program->palette.black, 75, 75, ALLEGRO_ALIGN_CENTER, "x = %.2f y = %.2f", 
-                program->mouse_x, program->mouse_y);
             break;
         case BUBBLE_STATE:
             draw_bubble(program);

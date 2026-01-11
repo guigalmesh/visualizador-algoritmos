@@ -17,45 +17,10 @@ void create_user_interface(ProgramContext* program){
     elements[VISUALIZER].x = LOGICAL_WIDTH * 0.50f;
     elements[VISUALIZER].y = LOGICAL_HEIGHT * 0.25f;
     elements[VISUALIZER].UIfont = program->fonts->starmap_large;
-
-    // fazer uma função pra parametrizar a criação de botões
-
-    //Botão "BUBBLE SORT"
-    strcpy(elements[BUBBLE_SORT].text, "BUBBLE SORT");
-    elements[BUBBLE_SORT].x = LOGICAL_WIDTH * 0.50f;
-    elements[BUBBLE_SORT].x_render = program->screen_w * 0.50f;
-    elements[BUBBLE_SORT].y = LOGICAL_HEIGHT * 0.35f;
-    elements[BUBBLE_SORT].y_render = program->screen_h * 0.35f;
-    elements[BUBBLE_SORT].UIfont = program->fonts->starmap_normal;
-    elements[BUBBLE_SORT].UIfont_s = program->fonts->starmap_normal_s;
-    elements[BUBBLE_SORT].color = program->palette.black;
-    elements[BUBBLE_SORT].onClick = button_bubble_sort;
-    get_button_hitbox(elements, BUBBLE_SORT);
-
-    //Botão "SELECTION SORT"
-    strcpy(program->elements[INSERTION_SORT].text, "SELECTION SORT");
-    elements[INSERTION_SORT].x = LOGICAL_WIDTH * 0.50f;
-    elements[INSERTION_SORT].x_render = program->screen_w * 0.50f;
-    elements[INSERTION_SORT].y = LOGICAL_HEIGHT * 0.45f;
-    elements[INSERTION_SORT].y_render = program->screen_h * 0.45f;
-    elements[INSERTION_SORT].UIfont = program->fonts->starmap_normal;
-    elements[INSERTION_SORT].UIfont_s = program->fonts->starmap_normal_s;
-    elements[INSERTION_SORT].color = program->palette.black;
-    elements[INSERTION_SORT].onClick = button_insertion_sort;
-    get_button_hitbox(elements, INSERTION_SORT);
-
-    //Botão "BACK TO MENU"
-    strcpy(program->elements[BACK_TO_MENU].text, "BACK");
-    elements[BACK_TO_MENU].x = LOGICAL_WIDTH * 0.05f;
-    elements[BACK_TO_MENU].x_render = program->screen_w * 0.05f;
-    elements[BACK_TO_MENU].y = LOGICAL_HEIGHT * 0.10f;
-    elements[BACK_TO_MENU].y_render = program->screen_h * 0.10f;
-    elements[BACK_TO_MENU].UIfont = program->fonts->starmap_normal;
-    elements[BACK_TO_MENU].UIfont_s = program->fonts->starmap_normal_s;
-    elements[BACK_TO_MENU].color = program->palette.black;
-    elements[BACK_TO_MENU].onClick = button_back_to_menu;
-    get_button_hitbox(elements, BACK_TO_MENU);
     
+    create_button(program, BUBBLE_SORT, 0.50, 0.35, "BUBBLE SORT", button_bubble_sort);
+    create_button(program, INSERTION_SORT, 0.50, 0.45, "INSERTION SORT", button_insertion_sort);
+    create_button(program, BACK_TO_MENU, 0.05, 0.10, "BACK", button_back_to_menu);
 }
 
 void create_color_palette(ColorPalette* palette){

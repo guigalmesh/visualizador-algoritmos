@@ -48,3 +48,19 @@ void get_button_hitbox(UIElements* elements, int button){
     elements[button].y2 = elements[button].y_render + (float)height;
 }
 
+void create_button(ProgramContext* program, int id, float x_pct, float y_pct, const char *text, ButtonAction onClick){
+    strcpy(program->elements[id].text, text);
+
+    program->elements[id].x = LOGICAL_WIDTH * x_pct;
+    program->elements[id].y = LOGICAL_HEIGHT * y_pct;
+    program->elements[id].x_render = program->screen_w * x_pct;
+    program->elements[id].y_render = program->screen_h * y_pct;
+
+    program->elements[id].UIfont = program->fonts->starmap_normal;
+    program->elements[id].UIfont_s = program->fonts->starmap_normal_s;
+    program->elements[id].color = program->palette.black;
+
+    program->elements[id].onClick = onClick;
+    get_button_hitbox(program->elements, id);
+}  
+
