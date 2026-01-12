@@ -9,6 +9,7 @@ void button_bubble_sort(ProgramContext* program){
     program->elements[INSERTION_SORT].is_visible = false;
     program->elements[BUBBLE_SORT].is_visible = false;
     program->elements[BACK_TO_MENU].is_visible = true;
+    program->elements[CLOSE_PROGRAM].is_visible = false;
     program->number_list = lst_generate(10, 1, 100);
 }
 
@@ -17,6 +18,7 @@ void button_back_to_menu(ProgramContext* program){
     program->elements[INSERTION_SORT].is_visible = true;
     program->elements[BUBBLE_SORT].is_visible = true;
     program->elements[BACK_TO_MENU].is_visible = false;
+    program->elements[CLOSE_PROGRAM].is_visible = true;
 }
 
 void button_insertion_sort(ProgramContext* program){
@@ -24,7 +26,12 @@ void button_insertion_sort(ProgramContext* program){
     program->elements[INSERTION_SORT].is_visible = false;
     program->elements[BUBBLE_SORT].is_visible = false;
     program->elements[BACK_TO_MENU].is_visible = true;
+    program->elements[CLOSE_PROGRAM].is_visible = false;
     program->number_list = lst_generate(30, 1, 10);
+}
+
+void button_close_program(ProgramContext* program){
+    program->program_running = false;
 }
 
 void program_loop(ProgramContext* program){
@@ -44,7 +51,7 @@ void program_loop(ProgramContext* program){
                 program->mouse_y = event.mouse.y;
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                for(int i = 0; i < 4; i++){
+                for(int i = 0; i < 5; i++){
                     if(is_mouse_hovering_button(program, program->elements, i)){
                         if(program->elements[i].onClick != NULL){
                             program->elements[i].onClick(program);

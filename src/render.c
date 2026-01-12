@@ -57,6 +57,8 @@ void draw_menu(ProgramContext* program){
     draw_button(program, elements, BUBBLE_SORT);
     //Botão "INSERTION SORT"
     draw_button(program, elements, INSERTION_SORT);
+    //Botão "CLOSE PROGRAM"
+    draw_button(program, elements, CLOSE_PROGRAM);
 }
 
 void draw_bubble(ProgramContext* program){

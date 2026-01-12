@@ -24,6 +24,8 @@ void create_user_interface(ProgramContext* program){
     elements[INSERTION_SORT].is_visible = true;
     create_button(program, BACK_TO_MENU, 0.05, 0.10, "BACK", button_back_to_menu);
     elements[BACK_TO_MENU].is_visible = false;
+    create_button(program, CLOSE_PROGRAM, 0.90, 0.10, "X", button_close_program);
+    elements[CLOSE_PROGRAM].is_visible = true;
 }
 
 void create_color_palette(ColorPalette* palette){
