@@ -19,8 +19,11 @@ void create_user_interface(ProgramContext* program){
     elements[VISUALIZER].UIfont = program->fonts->starmap_large;
     
     create_button(program, BUBBLE_SORT, 0.50, 0.35, "BUBBLE SORT", button_bubble_sort);
+    elements[BUBBLE_SORT].is_visible = true;
     create_button(program, INSERTION_SORT, 0.50, 0.45, "INSERTION SORT", button_insertion_sort);
+    elements[INSERTION_SORT].is_visible = true;
     create_button(program, BACK_TO_MENU, 0.05, 0.10, "BACK", button_back_to_menu);
+    elements[BACK_TO_MENU].is_visible = false;
 }
 
 void create_color_palette(ColorPalette* palette){

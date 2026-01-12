@@ -31,6 +31,8 @@ void init_sequence(ProgramContext* program){
 }
 
 bool is_mouse_hovering_button(ProgramContext* program, UIElements* elements, int element){
+    if(elements[element].is_visible == false)
+        return false;
     if(program->mouse_x >= elements[element].x1 && program->mouse_y >= elements[element].y1 
     && program->mouse_x <= elements[element].x2 && program->mouse_y <= elements[element].y2)
         return true;

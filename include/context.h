@@ -39,6 +39,7 @@ typedef struct UIElements{
     float x, y, x_render, y_render;
     float width, height;
     float x1, y1, x2, y2;
+    bool is_visible;
     ButtonAction onClick;
 }UIElements;
 
