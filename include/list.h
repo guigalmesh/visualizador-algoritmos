@@ -3,7 +3,6 @@
 
 typedef struct Box{
     int value;
-    float height, width;
     float x1, y1;
     float x2, y2;
 }Box;

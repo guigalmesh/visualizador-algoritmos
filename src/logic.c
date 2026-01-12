@@ -6,9 +6,7 @@
 
 void button_bubble_sort(ProgramContext* program){
     program->programState = BUBBLE_STATE;
-    program->number_list = lst_generate(100, 1, 100);
-    lst_print(program->number_list);
-    //printf("biggest: %d\n", program->number_list->biggest_number);
+    program->number_list = lst_generate(10, 1, 100);
 }
 
 void button_back_to_menu(ProgramContext* program){

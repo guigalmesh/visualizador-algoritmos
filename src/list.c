@@ -10,23 +10,12 @@ Node* create_node(int value, List* list){
     new_node->box->value = value;
     new_node->prox = NULL;
 
-    // protótipo das propriedades de box
-
     float height = ((float)value / list->max_number) * 300;
     float width = 900.0 / list->list_size;
-    float x1 = (LOGICAL_WIDTH * 0.15f) + (width * list->list_size_counter);
-    float y1 = LOGICAL_HEIGHT * 0.70f;
-    float x2 = x1 + width;
-    float y2 = y1 - height;
-
-    new_node->box->height = height;
-    new_node->box->width = width;
-
-    new_node->box->x1 = x1;
-    new_node->box->y1 = y1;
-
-    new_node->box->x2 = x2;
-    new_node->box->y2 = y2;
+    new_node->box->x1 = (LOGICAL_WIDTH * 0.15f) + (width * list->list_size_counter);
+    new_node->box->y1 = LOGICAL_HEIGHT * 0.70f;
+    new_node->box->x2 = new_node->box->x1 + width;
+    new_node->box->y2 = new_node->box->y1 - height;
 
     return new_node;
 }
