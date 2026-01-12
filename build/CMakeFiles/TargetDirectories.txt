@@ -1,3 +1,0 @@
-/home/guigalmesh/Documentos/visualizador-algoritmos/build/CMakeFiles/visualizer.dir
-/home/guigalmesh/Documentos/visualizador-algoritmos/build/CMakeFiles/edit_cache.dir
-/home/guigalmesh/Documentos/visualizador-algoritmos/build/CMakeFiles/rebuild_cache.dir
