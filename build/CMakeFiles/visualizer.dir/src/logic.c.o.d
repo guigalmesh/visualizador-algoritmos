@@ -106,4 +106,11 @@ CMakeFiles/visualizer.dir/src/logic.c.o: \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/list.h \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/utils.h \
  /home/guigalmesh/Documentos/visualizador-algoritmos/include/render.h \
- /home/guigalmesh/Documentos/visualizador-algoritmos/include/context.h
+ /home/guigalmesh/Documentos/visualizador-algoritmos/include/context.h \
+ /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h

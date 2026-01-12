@@ -42,8 +42,6 @@ typedef struct UIElements{
     ButtonAction onClick;
 }UIElements;
 
-
-
 enum UI_Names{
     VISUALIZER,
     BUBBLE_SORT,

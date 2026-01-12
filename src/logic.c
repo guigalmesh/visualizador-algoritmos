@@ -2,10 +2,13 @@
 #include "utils.h"
 #include "render.h"
 #include <allegro5/allegro.h>
+#include <stdio.h>
 
 void button_bubble_sort(ProgramContext* program){
     program->programState = BUBBLE_STATE;
-    program->number_list = lst_generate(30, 1, 10);
+    program->number_list = lst_generate(100, 1, 100);
+    lst_print(program->number_list);
+    //printf("biggest: %d\n", program->number_list->biggest_number);
 }
 
 void button_back_to_menu(ProgramContext* program){
