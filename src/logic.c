@@ -1,6 +1,7 @@
 #include "context.h"
 #include "utils.h"
 #include "render.h"
+#include "algos.h"
 #include <allegro5/allegro.h>
 #include <stdio.h>
 
@@ -34,6 +35,10 @@ void button_close_program(ProgramContext* program){
     program->program_running = false;
 }
 
+void button_test_algo(ProgramContext* program){
+    bubble_one_step(program->number_list);
+}
+
 void program_loop(ProgramContext* program){
     ALLEGRO_EVENT event;
 
@@ -51,7 +56,7 @@ void program_loop(ProgramContext* program){
                 program->mouse_y = event.mouse.y;
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                for(int i = 0; i < 5; i++){
+                for(int i = 0; i < 6; i++){
                     if(is_mouse_hovering_button(program, program->elements, i)){
                         if(program->elements[i].onClick != NULL){
                             program->elements[i].onClick(program);

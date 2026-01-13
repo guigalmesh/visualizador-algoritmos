@@ -66,6 +66,8 @@ void draw_bubble(ProgramContext* program){
     //Botão "BACK"
     draw_button(program, elements, BACK_TO_MENU);
 
+    draw_button(program, elements, TEST_ALGO);
+
     // BOX
     Node* p = program->number_list->head;
     for(int i = 0; i < program->number_list->list_size; i++){
@@ -80,12 +82,12 @@ void draw_insertion(ProgramContext* program){
     draw_button(program, elements, BACK_TO_MENU);
 
     // BOX
-    List* list = program->number_list;
-    Node* p = list->head;
-    for(int i = 0; i < list->list_size; i++){
+    Node* p = program->number_list->head;
+    for(int i = 0; i < program->number_list->list_size; i++){
         draw_box(p->box);
         p = p->prox;
     }
+    
 }
 
 void program_render(ProgramContext* program){

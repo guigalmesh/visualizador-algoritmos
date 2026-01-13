@@ -8,7 +8,7 @@
 
 #define LOGICAL_WIDTH 1280
 #define LOGICAL_HEIGHT 720
-#define MAX_ELEMENTS 5
+#define MAX_ELEMENTS 6
 
 //Cores carregadas com al_map_rgb()
 typedef struct ColorPalette{
@@ -48,7 +48,8 @@ enum UI_Names{
     BUBBLE_SORT,
     INSERTION_SORT,
     BACK_TO_MENU,
-    CLOSE_PROGRAM
+    CLOSE_PROGRAM,
+    TEST_ALGO
 };
 
 //Estados do programa

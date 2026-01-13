@@ -12,6 +12,7 @@ set(SOURCES
     src/logic.c
     src/render.c
     src/utils.c
+    src/algos.c
 )
 
 # Adiciona os headers

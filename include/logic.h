@@ -7,6 +7,7 @@ void button_bubble_sort(ProgramContext* program);
 void button_back_to_menu(ProgramContext* program);
 void button_insertion_sort(ProgramContext* program);
 void button_close_program(ProgramContext* program);
+void button_test_algo(ProgramContext* program);
 void program_loop(ProgramContext* program);
 
 #endif
