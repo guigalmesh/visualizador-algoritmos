@@ -11,7 +11,7 @@ void button_bubble_sort(ProgramContext* program){
     program->elements[BUBBLE_SORT].is_visible = false;
     program->elements[BACK_TO_MENU].is_visible = true;
     program->elements[CLOSE_PROGRAM].is_visible = false;
-    program->number_list = lst_generate(10, 1, 100);
+    program->number_list = lst_generate(100, 1, 100);
 }
 
 void button_back_to_menu(ProgramContext* program){
@@ -36,7 +36,7 @@ void button_close_program(ProgramContext* program){
 }
 
 void button_test_algo(ProgramContext* program){
-    bubble_one_step(program->number_list);
+    bubble_sort(program);
 }
 
 void program_loop(ProgramContext* program){
