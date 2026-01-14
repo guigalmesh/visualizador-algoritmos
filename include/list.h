@@ -1,29 +1,23 @@
 #ifndef INPUT_H
 #define INPUT_H
+#include <allegro5/allegro.h>
 
-typedef struct Box{
+typedef struct ItemArr{
     int value;
-    float x1, y1;
-    float x2, y2;
-}Box;
+    ALLEGRO_COLOR color;
+}ItemArr;
 
-typedef struct Node{
-    Box *box;
-    struct Node *prox;
-}Node;
-
-typedef struct List{
-    int list_size;
-    int list_size_counter;
+typedef struct DynamicArr{
+    ItemArr* item_arr;
+    int size;
+    int capacity;
     int max_number;
-    Node *head;
-}List;
+}DynamicArr;
 
-
-Node* create_node(int value, List* list);
-List* lst_create();
-List* lst_append(List* list, int value);
-List* lst_generate(int size, int min, int max);
-void lst_print(List* list);
+DynamicArr* create_arr(int initial_capacity);
+void destroy_arr(DynamicArr* array);
+void append_arr(DynamicArr* array, int value);
+DynamicArr* generate_arr(int n_items, int min, int max);
+void print_arr(DynamicArr* arr);
 
 #endif

@@ -73,8 +73,7 @@ typedef struct ProgramContext{
     FontSet *fonts;
     float mouse_x, mouse_y;
     int screen_w, screen_h;
-    List *number_list;
-    Node* current_sort_node;
+    DynamicArr *arr;
 }ProgramContext;
 
 //Carrega os elementos da UI
