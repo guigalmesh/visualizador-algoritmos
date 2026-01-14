@@ -28,9 +28,17 @@ void draw_scaled_render_target(ProgramContext* program){
         offset_x, offset_y, scaled_w, scaled_h, 0);
 }
 
-void draw_box(Box* box){
-    al_draw_rectangle(box->x1, box->y1, box->x2, box->y2, al_map_rgb(0, 0, 0), 4);
-    al_draw_filled_rectangle(box->x1, box->y1, box->x2, box->y2, al_map_rgb(0, 255, 0));
+void draw_itens(DynamicArr* arr){
+    for(int i = 0; i < arr->size; i++){
+        float height = ((float)arr->item_arr[i].value / arr->max_number) * ITEM_CANVAS_HEIGHT;
+        float width = ((float)ITEM_CANVAS_WIDTH / arr->size);
+        float x1 = (LOGICAL_WIDTH * 0.15f) + (width * i + 1);
+        float y1 = LOGICAL_HEIGHT * 0.70f;
+        float x2 = x1 + width;
+        float y2 = y1 - height;
+        al_draw_rectangle(x1, y1, x2, y2, al_map_rgb(0, 0, 0), 4);
+        al_draw_filled_rectangle(x1, y1, x2, y2, arr->item_arr[i].color);
+    }
 }
 
 void draw_button(ProgramContext* program, UIElements* elements, int element){
@@ -68,12 +76,7 @@ void draw_bubble(ProgramContext* program){
 
     draw_button(program, elements, TEST_ALGO);
 
-    // BOX
-    Node* p = program->number_list->head;
-    for(int i = 0; i < program->number_list->list_size; i++){
-        draw_box(p->box);
-        p = p->prox;
-    }
+    draw_itens(program->arr);
 }
 
 void draw_insertion(ProgramContext* program){
@@ -81,13 +84,7 @@ void draw_insertion(ProgramContext* program){
     //Botão "BACK"
     draw_button(program, elements, BACK_TO_MENU);
 
-    // BOX
-    Node* p = program->number_list->head;
-    for(int i = 0; i < program->number_list->list_size; i++){
-        draw_box(p->box);
-        p = p->prox;
-    }
-    
+    draw_itens(program->arr);
 }
 
 void program_render(ProgramContext* program){

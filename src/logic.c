@@ -2,6 +2,7 @@
 #include "utils.h"
 #include "render.h"
 #include "algos.h"
+#include "list.h"
 #include <allegro5/allegro.h>
 #include <stdio.h>
 
@@ -11,7 +12,8 @@ void button_bubble_sort(ProgramContext* program){
     program->elements[BUBBLE_SORT].is_visible = false;
     program->elements[BACK_TO_MENU].is_visible = true;
     program->elements[CLOSE_PROGRAM].is_visible = false;
-    program->number_list = lst_generate(100, 1, 100);
+    program->arr = generate_arr(30, 1, 10);
+    print_arr(program->arr);
 }
 
 void button_back_to_menu(ProgramContext* program){
@@ -28,7 +30,7 @@ void button_insertion_sort(ProgramContext* program){
     program->elements[BUBBLE_SORT].is_visible = false;
     program->elements[BACK_TO_MENU].is_visible = true;
     program->elements[CLOSE_PROGRAM].is_visible = false;
-    program->number_list = lst_generate(30, 1, 10);
+    program->arr = generate_arr(100, 1, 100);
 }
 
 void button_close_program(ProgramContext* program){
@@ -36,7 +38,7 @@ void button_close_program(ProgramContext* program){
 }
 
 void button_test_algo(ProgramContext* program){
-    bubble_sort(program);
+    printf("test algo");
 }
 
 void program_loop(ProgramContext* program){

@@ -4,62 +4,50 @@
 #include "context.h"
 #include "list.h"
 
-Node* create_node(int value, List* list){
-    Node* new_node = (Node*)malloc(sizeof(Node));
-    new_node->box = (Box*)malloc(sizeof(Box));
-    new_node->box->value = value;
-    new_node->prox = NULL;
+DynamicArr* create_arr(int initial_capacity){
+    DynamicArr *arr = (DynamicArr*)malloc(sizeof(DynamicArr));
+    arr->size = 0;
+    arr->capacity = initial_capacity;
+    arr->item_arr = (ItemArr*)malloc(initial_capacity * sizeof(ItemArr));
 
-    float height = ((float)value / list->max_number) * 300;
-    float width = 900.0 / list->list_size;
-    new_node->box->x1 = (LOGICAL_WIDTH * 0.15f) + (width * list->list_size_counter);
-    new_node->box->y1 = LOGICAL_HEIGHT * 0.70f;
-    new_node->box->x2 = new_node->box->x1 + width;
-    new_node->box->y2 = new_node->box->y1 - height;
-
-    return new_node;
+    return arr;
 }
 
-List* lst_create(){
-    List* list = (List*)malloc(sizeof(List));
-    list->head = NULL;
-    list->list_size = 0;
-    list->list_size_counter = 0;
-    return list;
-}
-
-List* lst_append(List* list, int value){
-    Node* new_node = create_node(value, list);
-    list->list_size_counter++;
-    if(list->head == NULL){
-        list->head = new_node;
-        return list;
+void destroy_arr(DynamicArr* arr){
+    if(arr){
+        free(arr->item_arr);
+        free(arr);
     }
-    Node* p = list->head;
-    while(p->prox != NULL){
-        p = p->prox;
-    }
-    p->prox = new_node;
-    return list;
 }
 
-List* lst_generate(int list_size, int min, int max){
+void append_arr(DynamicArr* arr, int value){
+    if(arr->size >= arr->capacity){
+        arr->capacity *= 2;
+        arr->item_arr = realloc(arr->item_arr, sizeof(ItemArr) * arr->capacity);
+    }
+
+    arr->item_arr[arr->size].value = value;
+    arr->item_arr[arr->size].color = al_map_rgb(0, 255, 0);
+    arr->size++;
+}
+
+DynamicArr* generate_arr(int n_items, int min, int max){
     srand(time(NULL));
-    List* list = lst_create();
-    list->list_size = list_size;
-    list->max_number = max;
-    for(int i = 0; i < list_size; i++){
+    DynamicArr* arr = create_arr(n_items);
+    arr->max_number = n_items;
+    for(int i = 0; i < n_items; i++){
         int value = (rand() % max) + min;
-        list = lst_append(list, value);
+        append_arr(arr, value);
     }
-    return list;
+
+    return arr;
 }
 
-void lst_print(List* list){
-    Node* node = list->head;
-    for(int i = 0; i < list->list_size; i++){
-        printf("%d ", node->box->value);
-        node = node->prox;
+void print_arr(DynamicArr* arr){
+    printf("array: ");
+    for(int i = 0; i < arr->size; i++){
+        int k = arr->item_arr[i].value;
+        printf("%d ", k);
     }
     printf("\n");
 }
