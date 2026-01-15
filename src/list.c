@@ -34,7 +34,7 @@ void append_arr(DynamicArr* arr, int value){
 DynamicArr* generate_arr(int n_items, int min, int max){
     srand(time(NULL));
     DynamicArr* arr = create_arr(n_items);
-    arr->max_number = n_items;
+    arr->max_number = max;
     for(int i = 0; i < n_items; i++){
         int value = (rand() % max) + min;
         append_arr(arr, value);
