@@ -12,8 +12,7 @@ void button_bubble_sort(ProgramContext* program){
     program->elements[BUBBLE_SORT].is_visible = false;
     program->elements[BACK_TO_MENU].is_visible = true;
     program->elements[CLOSE_PROGRAM].is_visible = false;
-    program->arr = generate_arr(30, 1, 10);
-    print_arr(program->arr);
+    program->arr = generate_arr(1000, 1, 10000);
 }
 
 void button_back_to_menu(ProgramContext* program){
@@ -38,7 +37,10 @@ void button_close_program(ProgramContext* program){
 }
 
 void button_test_algo(ProgramContext* program){
-    printf("test algo");
+    program->iterator_i = 0;
+    program->iterator_j = 0;
+
+    program->sort_state = STATE_BUBBLE;
 }
 
 void program_loop(ProgramContext* program){
@@ -51,6 +53,12 @@ void program_loop(ProgramContext* program){
         al_wait_for_event(program->queue, &event);
         switch(event.type){
             case ALLEGRO_EVENT_TIMER:
+
+                if(program->sort_state == STATE_BUBBLE){
+                    for(int i = 0; i < 100; i++)
+                        bubble_sort_step(program);
+                }
+
                 program->redraw = true;
                 break;
             case ALLEGRO_EVENT_MOUSE_AXES:

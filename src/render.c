@@ -36,7 +36,7 @@ void draw_itens(DynamicArr* arr){
         float y1 = LOGICAL_HEIGHT * 0.70f;
         float x2 = x1 + width;
         float y2 = y1 - height;
-        al_draw_rectangle(x1, y1, x2, y2, al_map_rgb(0, 0, 0), 4);
+        //al_draw_rectangle(x1, y1, x2, y2, al_map_rgb(0, 0, 0), 3);
         al_draw_filled_rectangle(x1, y1, x2, y2, arr->item_arr[i].color);
     }
 }

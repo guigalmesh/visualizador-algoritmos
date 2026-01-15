@@ -59,6 +59,12 @@ enum ProgramState{
     INSERTION_STATE
 };
 
+typedef enum{
+    STATE_IDLE,
+    STATE_BUBBLE,
+    STATE_INSERTION
+} SortState;
+
 //Struct que contém as informações do programa, é passado em toda função
 typedef struct ProgramContext{
     ALLEGRO_DISPLAY *display;
@@ -74,6 +80,9 @@ typedef struct ProgramContext{
     float mouse_x, mouse_y;
     int screen_w, screen_h;
     DynamicArr *arr;
+    SortState sort_state;
+    int iterator_j;
+    int iterator_i;
 }ProgramContext;
 
 //Carrega os elementos da UI
