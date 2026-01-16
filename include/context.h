@@ -83,6 +83,7 @@ typedef struct ProgramContext{
     SortState sort_state;
     int iterator_j;
     int iterator_i;
+    int key;
 }ProgramContext;
 
 //Carrega os elementos da UI

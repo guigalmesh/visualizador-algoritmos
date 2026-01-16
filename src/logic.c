@@ -40,7 +40,7 @@ void button_test_algo(ProgramContext* program){
     program->iterator_i = 0;
     program->iterator_j = 0;
 
-    program->sort_state = STATE_BUBBLE;
+    program->sort_state = STATE_INSERTION;
 }
 
 void program_loop(ProgramContext* program){
@@ -57,6 +57,11 @@ void program_loop(ProgramContext* program){
                 if(program->sort_state == STATE_BUBBLE){
                     for(int i = 0; i < 100; i++)
                         bubble_sort_step(program);
+                }
+
+                if(program->sort_state == STATE_INSERTION){
+                    for(int i = 0; i < 1; i++)
+                        insertion_sort_step(program);
                 }
 
                 program->redraw = true;

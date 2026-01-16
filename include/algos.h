@@ -4,5 +4,6 @@
 #include "context.h"
 
 void bubble_sort_step(ProgramContext* program);
+void insertion_sort_step(ProgramContext* program);
 
 #endif
