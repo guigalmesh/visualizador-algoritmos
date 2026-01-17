@@ -10,6 +10,29 @@
 #define LOGICAL_HEIGHT 720
 #define MAX_ELEMENTS 7
 
+//Estados do programa
+enum ProgramState{
+    MENU_STATE,
+    BUBBLE_STATE,
+    INSERTION_STATE
+};
+
+typedef enum{
+    SORTSTATE_IDLE,
+    SORTSTATE_BUBBLE,
+    SORTSTATE_INSERTION
+} SortState;
+
+enum UI_Names{
+    VISUALIZER,
+    BUBBLE_SORT,
+    INSERTION_SORT,
+    BACK_TO_MENU,
+    CLOSE_PROGRAM,
+    INSERTION_START,
+    BUBBLE_START
+};
+
 //Cores carregadas com al_map_rgb()
 typedef struct ColorPalette{
     ALLEGRO_COLOR black;
@@ -27,8 +50,24 @@ typedef struct FontSet{
 
 typedef struct ProgramContext ProgramContext;
 
+typedef struct RenderContext {
+    ALLEGRO_DISPLAY *display;
+    ALLEGRO_BITMAP *render_target;
+    int screen_w, screen_h;
+} RenderContext;
+
+typedef struct EventContext {
+    ALLEGRO_EVENT_QUEUE *queue;
+    ALLEGRO_TIMER *logic_timer;
+    float mouse_x, mouse_y;
+} EventContext;
+
+typedef struct StateContext StateContext;
+typedef struct UIContext UIContext;
+typedef struct SortContext SortContext;
+
 //Function pointer para a ação dos botões
-typedef void (*ButtonAction)(ProgramContext*);
+typedef void (*ButtonAction)(StateContext*, UIContext*, SortContext*);
 
 //Botões e elementos em da UI
 typedef struct UIElements{
@@ -43,49 +82,19 @@ typedef struct UIElements{
     ButtonAction onClick;
 }UIElements;
 
-enum UI_Names{
-    VISUALIZER,
-    BUBBLE_SORT,
-    INSERTION_SORT,
-    BACK_TO_MENU,
-    CLOSE_PROGRAM,
-    INSERTION_START,
-    BUBBLE_START
-};
-
-//Estados do programa
-enum ProgramState{
-    MENU_STATE,
-    BUBBLE_STATE,
-    INSERTION_STATE
-};
-
-typedef enum{
-    SORTSTATE_IDLE,
-    SORTSTATE_BUBBLE,
-    SORTSTATE_INSERTION
-} SortState;
-
-typedef struct{
-    ALLEGRO_DISPLAY *display;
-    ALLEGRO_BITMAP *render_target;
-}RenderContext;
-
-//Struct que contém as informações do programa, é passado em toda função
-typedef struct ProgramContext{
-    ALLEGRO_DISPLAY *display;
-    ALLEGRO_BITMAP *render_target;
-    ALLEGRO_EVENT_QUEUE *queue;
-    ALLEGRO_TIMER *logic_timer;
-    int programState;
-    bool redraw;
-    bool program_running;
+typedef struct UIContext {
     UIElements elements[MAX_ELEMENTS];
     ColorPalette palette;
     FontSet *fonts;
-    float mouse_x, mouse_y;
-    int screen_w, screen_h;
-    // Usados para o sorting dos vetores
+} UIContext;
+
+typedef struct StateContext {
+    int programState;
+    bool redraw;
+    bool program_running;
+} StateContext;
+
+typedef struct SortContext {
     DynamicArr *arr;
     SortState sort_state;
     int iterator_j;
@@ -93,10 +102,19 @@ typedef struct ProgramContext{
     bool is_holding_key;
     int key_value;
     ALLEGRO_COLOR key_color;
+} SortContext;
+
+//Struct que contém as informações do programa, é passado em toda função
+typedef struct ProgramContext{
+    RenderContext render;
+    EventContext event;
+    UIContext ui;
+    StateContext state;
+    SortContext sort;
 }ProgramContext;
 
 //Carrega os elementos da UI
-void create_user_interface(ProgramContext* program);
+void create_user_interface(UIContext* ui, RenderContext* render);
 //Carrega as cores
 void create_color_palette(ColorPalette* palette);
 //Carrega as fontes

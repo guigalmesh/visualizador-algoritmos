@@ -9,26 +9,26 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
-void create_user_interface(ProgramContext* program){
-    UIElements* elements = program->elements;
+void create_user_interface(UIContext* ui, RenderContext* render){
+    UIElements* elements = ui->elements;
 
     //Título "VISUALIZER"
     strcpy(elements[VISUALIZER].text, "VISUALIZER");
     elements[VISUALIZER].x = LOGICAL_WIDTH * 0.50f;
     elements[VISUALIZER].y = LOGICAL_HEIGHT * 0.25f;
-    elements[VISUALIZER].UIfont = program->fonts->starmap_large;
+    elements[VISUALIZER].UIfont = ui->fonts->starmap_large;
     
-    create_button(program, BUBBLE_SORT, 0.50, 0.35, "BUBBLE SORT", button_bubble_sort);
+    create_button(ui, render, BUBBLE_SORT, 0.50, 0.35, "BUBBLE SORT", button_bubble_sort);
     elements[BUBBLE_SORT].is_visible = true;
-    create_button(program, INSERTION_SORT, 0.50, 0.45, "INSERTION SORT", button_insertion_sort);
+    create_button(ui, render, INSERTION_SORT, 0.50, 0.45, "INSERTION SORT", button_insertion_sort);
     elements[INSERTION_SORT].is_visible = true;
-    create_button(program, BACK_TO_MENU, 0.05, 0.10, "BACK", button_back_to_menu);
+    create_button(ui, render, BACK_TO_MENU, 0.05, 0.10, "BACK", button_back_to_menu);
     elements[BACK_TO_MENU].is_visible = false;
-    create_button(program, CLOSE_PROGRAM, 0.90, 0.10, "X", button_close_program);
+    create_button(ui, render, CLOSE_PROGRAM, 0.90, 0.10, "X", button_close_program);
     elements[CLOSE_PROGRAM].is_visible = true;
-    create_button(program, INSERTION_START, 0.90, 0.10, "start_insertion", button_start_insertion);
+    create_button(ui, render, INSERTION_START, 0.90, 0.10, "start_insertion", button_start_insertion);
     elements[INSERTION_START].is_visible = false;
-    create_button(program, BUBBLE_START, 0.90, 0.10, "start_bubble", button_start_bubble);
+    create_button(ui, render, BUBBLE_START, 0.90, 0.10, "start_bubble", button_start_bubble);
     elements[BUBBLE_START].is_visible = false;
 }
 
@@ -55,42 +55,42 @@ void create_program_context(ProgramContext* program){
     al_get_monitor_info(0, &monitor_info);
     int screen_w = monitor_info.x2 - monitor_info.x1;
     int screen_h = monitor_info.y2 - monitor_info.y1;
-    program->screen_w = screen_w;
-    program->screen_h = screen_h;
+    program->render.screen_w = screen_w;
+    program->render.screen_h = screen_h;
     ALLEGRO_DISPLAY *display = al_create_display(screen_w, screen_h);
     must_init(display, "display");
-    program->display = display;
+    program->render.display = display;
 
     ALLEGRO_BITMAP *render_target = al_create_bitmap(LOGICAL_WIDTH, LOGICAL_HEIGHT);
     must_init(render_target, "render target");
-    program->render_target = render_target;
+    program->render.render_target = render_target;
 
     ALLEGRO_EVENT_QUEUE *queue = al_create_event_queue();
     must_init(queue, "event queue");
-    program->queue = queue;
+    program->event.queue = queue;
     
     ALLEGRO_TIMER *logic_timer = al_create_timer(1 / 60.0);
-    program->logic_timer = logic_timer;
+    program->event.logic_timer = logic_timer;
 
-    program->program_running = true;
+    program->state.program_running = true;
 
-    program->programState = MENU_STATE;
+    program->state.programState = MENU_STATE;
 
     ColorPalette palette;
     create_color_palette(&palette);
-    program->palette = palette;
+    program->ui.palette = palette;
 
     FontSet* fonts = malloc(sizeof(FontSet));
     must_init(fonts, "malloc fonts");
     create_fonts(fonts);
-    program->fonts = fonts;
+    program->ui.fonts = fonts;
 
-    create_user_interface(program);
+    create_user_interface(&program->ui, &program->render);
 }
 
 void destroy_program_context(ProgramContext* program){
-    al_destroy_bitmap(program->render_target);
-    al_destroy_event_queue(program->queue);
-    al_destroy_display(program->display);
-    al_destroy_timer(program->logic_timer);
+    al_destroy_bitmap(program->render.render_target);
+    al_destroy_event_queue(program->event.queue);
+    al_destroy_display(program->render.display);
+    al_destroy_timer(program->event.logic_timer);
 }

@@ -5,15 +5,15 @@
 #include <stdlib.h>
 #include <allegro5/allegro.h>
 
-void bubble_sort_step(ProgramContext* program){
-    DynamicArr* arr = program->arr;
+void bubble_sort_step(SortContext* sort){
+    DynamicArr* arr = sort->arr;
 
-    if(program->iterator_i >= arr->size - 1){
-        program->sort_state = SORTSTATE_IDLE;
+    if(sort->iterator_i >= arr->size - 1){
+        sort->sort_state = SORTSTATE_IDLE;
         return;
     }
 
-    int j = program->iterator_j;
+    int j = sort->iterator_j;
 
     if(arr->item_arr[j].value > arr->item_arr[j+ 1].value){
         int temp = arr->item_arr[j].value;
@@ -25,41 +25,41 @@ void bubble_sort_step(ProgramContext* program){
         arr->item_arr[j + 1].color = temp_color;
     }
 
-    program->iterator_j++;
+    sort->iterator_j++;
 
-    if(program->iterator_j >= arr->size - 1 - program->iterator_i){
-        program->iterator_j = 0;
-        program->iterator_i++;
+    if(sort->iterator_j >= arr->size - 1 - sort->iterator_i){
+        sort->iterator_j = 0;
+        sort->iterator_i++;
     }
 }
 
-void insertion_sort_step(ProgramContext* program){
-    DynamicArr* arr = program->arr;
+void insertion_sort_step(SortContext* sort){
+    DynamicArr* arr = sort->arr;
 
-    if(program->iterator_i >= arr->size){
-        program->sort_state = SORTSTATE_IDLE;
+    if(sort->iterator_i >= arr->size){
+        sort->sort_state = SORTSTATE_IDLE;
         return;
     }
 
-    if(!program->is_holding_key){
-        program->key_value = arr->item_arr[program->iterator_i].value;
-        program->key_color = arr->item_arr[program->iterator_i].color;
+    if(!sort->is_holding_key){
+        sort->key_value = arr->item_arr[sort->iterator_i].value;
+        sort->key_color = arr->item_arr[sort->iterator_i].color;
 
-        program->iterator_j = program->iterator_i - 1;
-        program->is_holding_key = true;
+        sort->iterator_j = sort->iterator_i - 1;
+        sort->is_holding_key = true;
         return;
     }
 
-    if(program->iterator_j >= 0 && arr->item_arr[program->iterator_j].value > program->key_value){
-        arr->item_arr[program->iterator_j + 1] = arr->item_arr[program->iterator_j];
+    if(sort->iterator_j >= 0 && arr->item_arr[sort->iterator_j].value > sort->key_value){
+        arr->item_arr[sort->iterator_j + 1] = arr->item_arr[sort->iterator_j];
 
-        program->iterator_j--;
+        sort->iterator_j--;
         return;
     }
 
-    arr->item_arr[program->iterator_j + 1].value = program->key_value;
-    arr->item_arr[program->iterator_j + 1].color = program->key_color;
+    arr->item_arr[sort->iterator_j + 1].value = sort->key_value;
+    arr->item_arr[sort->iterator_j + 1].color = sort->key_color;
 
-    program->iterator_i++;
-    program->is_holding_key = false;
+    sort->iterator_i++;
+    sort->is_holding_key = false;
 }
