@@ -8,7 +8,7 @@
 
 #define LOGICAL_WIDTH 1280
 #define LOGICAL_HEIGHT 720
-#define MAX_ELEMENTS 6
+#define MAX_ELEMENTS 7
 
 //Cores carregadas com al_map_rgb()
 typedef struct ColorPalette{
@@ -49,7 +49,8 @@ enum UI_Names{
     INSERTION_SORT,
     BACK_TO_MENU,
     CLOSE_PROGRAM,
-    TEST_ALGO
+    INSERTION_START,
+    BUBBLE_START
 };
 
 //Estados do programa
@@ -60,9 +61,9 @@ enum ProgramState{
 };
 
 typedef enum{
-    STATE_IDLE,
-    STATE_BUBBLE,
-    STATE_INSERTION
+    SORTSTATE_IDLE,
+    SORTSTATE_BUBBLE,
+    SORTSTATE_INSERTION
 } SortState;
 
 //Struct que contém as informações do programa, é passado em toda função
@@ -79,11 +80,14 @@ typedef struct ProgramContext{
     FontSet *fonts;
     float mouse_x, mouse_y;
     int screen_w, screen_h;
+    // Usados para o sorting dos vetores
     DynamicArr *arr;
     SortState sort_state;
     int iterator_j;
     int iterator_i;
-    int key;
+    bool is_holding_key;
+    int key_value;
+    ALLEGRO_COLOR key_color;
 }ProgramContext;
 
 //Carrega os elementos da UI

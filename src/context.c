@@ -26,8 +26,10 @@ void create_user_interface(ProgramContext* program){
     elements[BACK_TO_MENU].is_visible = false;
     create_button(program, CLOSE_PROGRAM, 0.90, 0.10, "X", button_close_program);
     elements[CLOSE_PROGRAM].is_visible = true;
-    create_button(program, TEST_ALGO, 0.90, 0.10, "O", button_test_algo);
-    elements[TEST_ALGO].is_visible = true;
+    create_button(program, INSERTION_START, 0.90, 0.10, "start_insertion", button_start_insertion);
+    elements[INSERTION_START].is_visible = false;
+    create_button(program, BUBBLE_START, 0.90, 0.10, "start_bubble", button_start_bubble);
+    elements[BUBBLE_START].is_visible = false;
 }
 
 void create_color_palette(ColorPalette* palette){

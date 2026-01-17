@@ -8,14 +8,14 @@
 void bubble_sort_step(ProgramContext* program){
     DynamicArr* arr = program->arr;
 
-    if(program->iterator_i >= arr->size - 1){ // condição de parada loop 1
-        program->sort_state = STATE_IDLE;
+    if(program->iterator_i >= arr->size - 1){
+        program->sort_state = SORTSTATE_IDLE;
         return;
     }
 
     int j = program->iterator_j;
 
-    if(arr->item_arr[j].value > arr->item_arr[j+ 1].value){ // comparação
+    if(arr->item_arr[j].value > arr->item_arr[j+ 1].value){
         int temp = arr->item_arr[j].value;
         arr->item_arr[j].value = arr->item_arr[j + 1].value;
         arr->item_arr[j + 1].value = temp;
@@ -25,9 +25,9 @@ void bubble_sort_step(ProgramContext* program){
         arr->item_arr[j + 1].color = temp_color;
     }
 
-    program->iterator_j++; // incremento j
+    program->iterator_j++;
 
-    if(program->iterator_j >= arr->size - 1 - program->iterator_i){ // condição de parada loop 2
+    if(program->iterator_j >= arr->size - 1 - program->iterator_i){
         program->iterator_j = 0;
         program->iterator_i++;
     }
@@ -36,34 +36,30 @@ void bubble_sort_step(ProgramContext* program){
 void insertion_sort_step(ProgramContext* program){
     DynamicArr* arr = program->arr;
 
-
-    if(program->iterator_i > arr->size - 1){ // condição de parada loop for
-        program->sort_state = STATE_IDLE;
+    if(program->iterator_i >= arr->size){
+        program->sort_state = SORTSTATE_IDLE;
         return;
     }
 
-    if(program->iterator_i == 0 || 
-    !(program->iterator_j >= 0 && arr->item_arr[program->iterator_j].value > program->key)){
-        program->key = arr->item_arr[program->iterator_i].value;
+    if(!program->is_holding_key){
+        program->key_value = arr->item_arr[program->iterator_i].value;
+        program->key_color = arr->item_arr[program->iterator_i].color;
+
         program->iterator_j = program->iterator_i - 1;
+        program->is_holding_key = true;
+        return;
     }
 
-    if(program->iterator_j >= 0 && arr->item_arr[program->iterator_j].value > program->key){
+    if(program->iterator_j >= 0 && arr->item_arr[program->iterator_j].value > program->key_value){
         arr->item_arr[program->iterator_j + 1] = arr->item_arr[program->iterator_j];
+
         program->iterator_j--;
+        return;
     }
 
-    if(!(program->iterator_j >= 0 && arr->item_arr[program->iterator_j].value > program->key)){
-        arr->item_arr[program->iterator_j + 1].value = program->key;
-        program->iterator_i++;
-    }
+    arr->item_arr[program->iterator_j + 1].value = program->key_value;
+    arr->item_arr[program->iterator_j + 1].color = program->key_color;
+
+    program->iterator_i++;
+    program->is_holding_key = false;
 }
-
-/*
-- se i for maior que size, para
-- program->key = arr[i]
-- j = i - 1
-
-
-
-*/

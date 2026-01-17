@@ -74,7 +74,7 @@ void draw_bubble(ProgramContext* program){
     //Botão "BACK"
     draw_button(program, elements, BACK_TO_MENU);
 
-    draw_button(program, elements, TEST_ALGO);
+    draw_button(program, elements, BUBBLE_START);
 
     draw_itens(program->arr);
 }
@@ -84,7 +84,7 @@ void draw_insertion(ProgramContext* program){
     //Botão "BACK"
     draw_button(program, elements, BACK_TO_MENU);
 
-    draw_button(program, elements, TEST_ALGO);
+    draw_button(program, elements, INSERTION_START);
 
     draw_itens(program->arr);
 }
