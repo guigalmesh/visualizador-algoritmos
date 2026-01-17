@@ -3,7 +3,7 @@
 #include "list.h"
 #include "context.h"
 
-void bubble_sort_step(ProgramContext* program);
-void insertion_sort_step(ProgramContext* program);
+void bubble_sort_step(SortContext* sort);
+void insertion_sort_step(SortContext* sort);
 
 #endif

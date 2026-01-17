@@ -7,12 +7,12 @@
 #define ITEM_CANVAS_HEIGHT 300
 #define ITEM_CANVAS_WIDTH 900
 
-void draw_scaled_render_target(ProgramContext* program);
+void draw_scaled_render_target(RenderContext* render, UIContext* ui);
 void draw_itens(DynamicArr* arr);
-void draw_button(ProgramContext* program, UIElements* elements, int element);
-void draw_menu(ProgramContext* program);
-void draw_bubble(ProgramContext* program);
-void draw_insertion(ProgramContext* program);
+void draw_button(EventContext* event, UIContext* ui, int element);
+void draw_menu(UIContext* ui, EventContext* event);
+void draw_bubble(UIContext* ui, EventContext* event, SortContext* sort);
+void draw_insertion(UIContext* ui, EventContext* event, SortContext* sort);
 void program_render(ProgramContext* program);
 
 #endif
