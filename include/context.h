@@ -66,6 +66,11 @@ typedef enum{
     SORTSTATE_INSERTION
 } SortState;
 
+typedef struct{
+    ALLEGRO_DISPLAY *display;
+    ALLEGRO_BITMAP *render_target;
+}RenderContext;
+
 //Struct que contém as informações do programa, é passado em toda função
 typedef struct ProgramContext{
     ALLEGRO_DISPLAY *display;
