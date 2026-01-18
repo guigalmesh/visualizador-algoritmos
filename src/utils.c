@@ -64,5 +64,17 @@ void create_button(UIContext* ui, RenderContext* render, int id, float x_pct, fl
 
     ui->elements[id].onClick = onClick;
     get_button_hitbox(ui->elements, id);
-}  
+}
+
+void swap(ItemArr *item_a, ItemArr *item_b){
+    int temp;
+    temp = item_a->value;
+    item_a->value = item_b->value;
+    item_b->value = temp;
+
+    ALLEGRO_COLOR color;
+    color = item_a->color;
+    item_a->color = item_b->color;
+    item_b->color = color;
+}
 
