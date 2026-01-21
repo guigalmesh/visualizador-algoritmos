@@ -97,8 +97,9 @@ typedef struct StateContext {
 typedef struct SortContext {
     DynamicArr *arr;
     SortState sort_state;
-    int iterator_j;
-    int iterator_i;
+    int state;
+    int j;
+    int i;
     bool is_holding_key;
     int key_value;
     ALLEGRO_COLOR key_color;

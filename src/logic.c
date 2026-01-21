@@ -25,8 +25,8 @@ void button_back_to_menu(StateContext* state, UIContext* ui, SortContext* sort){
     ui->elements[CLOSE_PROGRAM].is_visible = true;
     ui->elements[INSERTION_START].is_visible = false;
     ui->elements[BUBBLE_START].is_visible = false;
-    sort->iterator_i = 0;
-    sort->iterator_j = 0;
+    sort->i = 0;
+    sort->j = 0;
     sort->is_holding_key = false;
     sort->key_value = false;
     sort->sort_state = SORTSTATE_IDLE;
@@ -48,15 +48,15 @@ void button_close_program(StateContext* state, UIContext* ui, SortContext* sort)
 }
 
 void button_start_insertion(StateContext* state, UIContext* ui, SortContext* sort){
-    sort->iterator_i = 1;
-    sort->iterator_j = 0;
+    sort->i = 1;
+    sort->j = 0;
     sort->is_holding_key = false;
     sort->sort_state = SORTSTATE_INSERTION;
 }
 
 void button_start_bubble(StateContext* state, UIContext* ui, SortContext* sort){
-    sort->iterator_i = 0;
-    sort->iterator_j = 0;
+    sort->i = 0;
+    sort->j = 0;
 
     sort->sort_state = SORTSTATE_BUBBLE;
 }
