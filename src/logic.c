@@ -30,6 +30,7 @@ void button_back_to_menu(StateContext* state, UIContext* ui, SortContext* sort){
     sort->is_holding_key = false;
     sort->key_value = false;
     sort->sort_state = SORTSTATE_IDLE;
+    destroy_arr(sort->arr);
 }
 
 void button_insertion_sort(StateContext* state, UIContext* ui, SortContext* sort){

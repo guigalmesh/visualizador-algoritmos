@@ -93,4 +93,9 @@ void destroy_program_context(ProgramContext* program){
     al_destroy_event_queue(program->event.queue);
     al_destroy_display(program->render.display);
     al_destroy_timer(program->event.logic_timer);
+    al_destroy_font(program->ui.fonts->debug_font);
+    al_destroy_font(program->ui.fonts->starmap_normal);
+    al_destroy_font(program->ui.fonts->starmap_normal_s);
+    al_destroy_font(program->ui.fonts->starmap_large);
+    free(program->ui.fonts);
 }
