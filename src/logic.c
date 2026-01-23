@@ -52,6 +52,7 @@ void button_start_insertion(StateContext* state, UIContext* ui, SortContext* sor
     sort->j = 0;
     sort->is_holding_key = false;
     sort->sort_state = SORTSTATE_INSERTION;
+    sort->state = PHASE_INIT_OUTER;
 }
 
 void button_start_bubble(StateContext* state, UIContext* ui, SortContext* sort){
@@ -59,6 +60,7 @@ void button_start_bubble(StateContext* state, UIContext* ui, SortContext* sort){
     sort->j = 0;
 
     sort->sort_state = SORTSTATE_BUBBLE;
+    sort->state = PHASE_INIT_OUTER;
 }
 
 void program_loop(ProgramContext* program){
@@ -73,12 +75,12 @@ void program_loop(ProgramContext* program){
             case ALLEGRO_EVENT_TIMER:
 
                 if(program->sort.sort_state == SORTSTATE_BUBBLE){
-                    for(int i = 0; i < 10; i++)
+                    for(int i = 0; i < 1; i++)
                         bubble_sort_step(&program->sort);
                 }
 
                 if(program->sort.sort_state == SORTSTATE_INSERTION){
-                    for(int i = 0; i < 10; i++)
+                    for(int i = 0; i < 1; i++)
                         insertion_sort_step(&program->sort);
                 }
                 program->state.redraw = true;

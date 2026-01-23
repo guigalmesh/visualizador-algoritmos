@@ -36,37 +36,38 @@ void bubble_sort_step(SortContext* ctx){
             ctx->state = PHASE_COMPARE_LOOP;
             return;
         case PHASE_FINISHED:
+            ctx->sort_state = SORTSTATE_IDLE;
             break;
     }
 }
 
-void insertion_sort_step(SortContext* sort){
-    DynamicArr* arr = sort->arr;
+void insertion_sort_step(SortContext* ctx){
+    DynamicArr* arr = ctx->arr;
 
-    if(sort->i >= arr->size){
-        sort->sort_state = SORTSTATE_IDLE;
-        return;
+    switch(ctx->state){
+        case PHASE_INIT_OUTER:
+            if(ctx->i >= arr->size){
+                ctx->state = PHASE_FINISHED;
+                return;
+            }
+            ctx->key_value = arr->item_arr[ctx->i].value;
+            ctx->j = ctx->i - 1;
+            ctx->state = PHASE_COMPARE_LOOP;
+        case PHASE_COMPARE_LOOP:
+            if(ctx->j < 0 || arr->item_arr[ctx->j].value < ctx->key_value){
+                ctx->state = PHASE_SWAP;
+                return;
+            }
+            swap(&arr->item_arr[ctx->j + 1], &arr->item_arr[ctx->j]);
+            ctx->j--;
+            return;
+        case PHASE_SWAP:
+            arr->item_arr[ctx->j + 1].value = ctx->key_value;
+            ctx->i++;
+            ctx->state = PHASE_INIT_OUTER;
+            return;
+        case PHASE_FINISHED:
+            ctx->sort_state = SORTSTATE_IDLE;
+            break;
     }
-
-    if(!sort->is_holding_key){
-        sort->key_value = arr->item_arr[sort->i].value;
-        sort->key_color = arr->item_arr[sort->i].color;
-
-        sort->j = sort->i - 1;
-        sort->is_holding_key = true;
-        return;
-    }
-
-    if(sort->j >= 0 && arr->item_arr[sort->j].value > sort->key_value){
-        arr->item_arr[sort->j + 1] = arr->item_arr[sort->j];
-
-        sort->j--;
-        return;
-    }
-
-    arr->item_arr[sort->j + 1].value = sort->key_value;
-    arr->item_arr[sort->j + 1].color = sort->key_color;
-
-    sort->i++;
-    sort->is_holding_key = false;
 }

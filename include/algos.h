@@ -3,7 +3,7 @@
 #include "list.h"
 #include "context.h"
 
-// yields points para algoritmos iterativos
+// yield points para algoritmos iterativos
 enum{ 
     PHASE_INIT_OUTER, 
     PHASE_COMPARE_LOOP, 
