@@ -8,13 +8,14 @@
 
 #define LOGICAL_WIDTH 1280
 #define LOGICAL_HEIGHT 720
-#define MAX_ELEMENTS 7
+#define NMB_BUTTONS 6
+#define NMB_TEXTS 1
 
 //Estados do programa
 enum ProgramState{
-    MENU_STATE,
-    BUBBLE_STATE,
-    INSERTION_STATE
+    MENU_STATE = 1 << 0,
+    BUBBLE_STATE = 1 << 1,
+    INSERTION_STATE = 1 << 2
 };
 
 typedef enum{
@@ -23,8 +24,11 @@ typedef enum{
     SORTSTATE_INSERTION
 } SortState;
 
-enum UI_Names{
-    VISUALIZER,
+enum UI_Text{
+    VISUALIZER
+};
+
+enum UI_Buttons{
     BUBBLE_SORT,
     INSERTION_SORT,
     BACK_TO_MENU,
@@ -69,8 +73,8 @@ typedef struct SortContext SortContext;
 //Function pointer para a ação dos botões
 typedef void (*ButtonAction)(StateContext*, UIContext*, SortContext*);
 
-//Botões e elementos em da UI
-typedef struct UIElements{
+//Botões da UI
+typedef struct UIButtons{
     ALLEGRO_FONT *UIfont;
     ALLEGRO_FONT *UIfont_s;
     ALLEGRO_COLOR color;
@@ -79,11 +83,23 @@ typedef struct UIElements{
     float width, height;
     float x1, y1, x2, y2;
     bool is_visible;
+    int visible_mask;
     ButtonAction onClick;
-}UIElements;
+}UIButtons;
+
+typedef struct UIText{
+    ALLEGRO_FONT *UIfont;
+    ALLEGRO_FONT *UIfont_s;
+    ALLEGRO_COLOR color;
+    char text[100];
+    float x, y;
+    bool is_visible;
+    int visible_mask;
+}UIText;
 
 typedef struct UIContext {
-    UIElements elements[MAX_ELEMENTS];
+    UIButtons buttons[NMB_BUTTONS];
+    UIText texts[NMB_TEXTS];
     ColorPalette palette;
     FontSet *fonts;
 } UIContext;

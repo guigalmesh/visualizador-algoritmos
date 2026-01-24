@@ -41,50 +41,45 @@ void draw_itens(DynamicArr* arr){
     }
 }
 
-void draw_button(EventContext* event, UIContext* ui, int element){
-    ALLEGRO_FONT* font = is_mouse_hovering_button(event, ui->elements, element) ?
-    ui->elements[element].UIfont_s : ui->elements[element].UIfont;
-    al_draw_text(font, ui->elements[element].color, 
-        ui->elements[element].x, ui->elements[element].y, 
-        ALLEGRO_ALIGN_CENTER, ui->elements[element].text);
+void draw_text(UIText* texts, int id){
+    al_draw_text(texts[id].UIfont, texts[id].color, 
+        texts[id].x, texts[id].y, 
+        ALLEGRO_ALIGN_CENTER, texts[id].text);
+}
+
+void draw_button(EventContext* event, UIButtons* buttons, int id){
+    ALLEGRO_FONT* font = is_mouse_hovering_button(event, buttons, id) ?
+    buttons[id].UIfont_s : buttons[id].UIfont;
+    al_draw_text(font, buttons[id].color, 
+        buttons[id].x, buttons[id].y, 
+        ALLEGRO_ALIGN_CENTER, buttons[id].text);
 }
 
 void draw_menu(UIContext* ui, EventContext* event){
-    ALLEGRO_FONT* starmap_large = ui->fonts->starmap_large;
-    ALLEGRO_FONT* starmap_normal = ui->fonts->starmap_normal;
-    ALLEGRO_COLOR black = ui->palette.black;
-    UIElements* elements = ui->elements;
     //Titulo "VISUALIZER"
-    UIElements* title = &ui->elements[VISUALIZER];
-    al_draw_text(starmap_large, 
-        black, 
-        title->x, title->y, 
-        ALLEGRO_ALIGN_CENTER, 
-        title->text);
+    draw_text(ui->texts, VISUALIZER);
     //Botão "BUBBLE SORT"
-    draw_button(event, ui, BUBBLE_SORT);
+    draw_button(event, ui->buttons, BUBBLE_SORT);
     //Botão "INSERTION SORT"
-    draw_button(event, ui, INSERTION_SORT);
+    draw_button(event, ui->buttons, INSERTION_SORT);
     //Botão "CLOSE PROGRAM"
-    draw_button(event, ui, CLOSE_PROGRAM);
+    draw_button(event, ui->buttons, CLOSE_PROGRAM);
 }
 
 void draw_bubble(UIContext* ui, EventContext* event, SortContext* sort){
-    UIElements* elements = ui->elements;
     //Botão "BACK"
-    draw_button(event, ui, BACK_TO_MENU);
+    draw_button(event, ui->buttons, BACK_TO_MENU);
 
-    draw_button(event, ui, BUBBLE_START);
+    draw_button(event, ui->buttons, BUBBLE_START);
 
     draw_itens(sort->arr);
 }
 
 void draw_insertion(UIContext* ui, EventContext* event, SortContext* sort){
-    UIElements* elements = ui->elements;
     //Botão "BACK"
-    draw_button(event, ui, BACK_TO_MENU);
+    draw_button(event, ui->buttons, BACK_TO_MENU);
 
-    draw_button(event, ui, INSERTION_START);
+    draw_button(event, ui->buttons, INSERTION_START);
 
     draw_itens(sort->arr);
 }

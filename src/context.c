@@ -11,26 +11,23 @@
 #include <allegro5/allegro_ttf.h>
 
 void create_user_interface(UIContext* ui, RenderContext* render){
-    UIElements* elements = ui->elements;
 
-    //Título "VISUALIZER"
-    strcpy(elements[VISUALIZER].text, "VISUALIZER");
-    elements[VISUALIZER].x = LOGICAL_WIDTH * 0.50f;
-    elements[VISUALIZER].y = LOGICAL_HEIGHT * 0.25f;
-    elements[VISUALIZER].UIfont = ui->fonts->starmap_large;
-    
+    create_text(ui, ui->fonts->starmap_large, VISUALIZER, 0.50, 0.25, "VISUALIZER");
+    ui->texts[VISUALIZER].visible_mask = MENU_STATE;
     create_button(ui, render, BUBBLE_SORT, 0.50, 0.35, "BUBBLE SORT", button_bubble_sort);
-    elements[BUBBLE_SORT].is_visible = true;
+    ui->buttons[BUBBLE_SORT].visible_mask = MENU_STATE;
     create_button(ui, render, INSERTION_SORT, 0.50, 0.45, "INSERTION SORT", button_insertion_sort);
-    elements[INSERTION_SORT].is_visible = true;
+    ui->buttons[INSERTION_SORT].visible_mask = MENU_STATE;
     create_button(ui, render, BACK_TO_MENU, 0.05, 0.10, "BACK", button_back_to_menu);
-    elements[BACK_TO_MENU].is_visible = false;
+    ui->buttons[BACK_TO_MENU].visible_mask = BUBBLE_STATE | INSERTION_STATE;
     create_button(ui, render, CLOSE_PROGRAM, 0.90, 0.10, "X", button_close_program);
-    elements[CLOSE_PROGRAM].is_visible = true;
+    ui->buttons[CLOSE_PROGRAM].visible_mask = MENU_STATE;
     create_button(ui, render, INSERTION_START, 0.90, 0.10, "start_insertion", button_start_insertion);
-    elements[INSERTION_START].is_visible = false;
+    ui->buttons[INSERTION_START].visible_mask = INSERTION_STATE;
     create_button(ui, render, BUBBLE_START, 0.90, 0.10, "start_bubble", button_start_bubble);
-    elements[BUBBLE_START].is_visible = false;
+    ui->buttons[BUBBLE_START].visible_mask = BUBBLE_STATE;
+
+    update_ui_visibility(ui, MENU_STATE);
 }
 
 void create_color_palette(ColorPalette* palette){
