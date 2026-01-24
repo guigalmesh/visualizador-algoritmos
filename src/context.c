@@ -1,6 +1,7 @@
 #include "context.h"
 #include "logic.h"
 #include "utils.h"
+#include "algos.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -75,6 +76,10 @@ void create_program_context(ProgramContext* program){
     program->state.program_running = true;
 
     program->state.programState = MENU_STATE;
+
+    program->sort.sort_state = SORTSTATE_IDLE;
+
+    program->sort.state = PHASE_INIT_OUTER;
 
     ColorPalette palette;
     create_color_palette(&palette);
