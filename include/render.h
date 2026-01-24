@@ -9,7 +9,8 @@
 
 void draw_scaled_render_target(RenderContext* render, UIContext* ui);
 void draw_itens(DynamicArr* arr);
-void draw_button(EventContext* event, UIContext* ui, int element);
+void draw_text(UIText* texts, int id);
+void draw_button(EventContext* event, UIButtons* buttons, int element);
 void draw_menu(UIContext* ui, EventContext* event);
 void draw_bubble(UIContext* ui, EventContext* event, SortContext* sort);
 void draw_insertion(UIContext* ui, EventContext* event, SortContext* sort);

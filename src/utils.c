@@ -30,40 +30,50 @@ void init_sequence(ProgramContext* program){
     create_program_context(program);
 }
 
-bool is_mouse_hovering_button(EventContext* event, UIElements* elements, int element){
-    if(elements[element].is_visible == false)
+bool is_mouse_hovering_button(EventContext* event, UIButtons* buttons, int id){
+    if(buttons[id].is_visible == false)
         return false;
-    if(event->mouse_x >= elements[element].x1 && event->mouse_y >= elements[element].y1 
-    && event->mouse_x <= elements[element].x2 && event->mouse_y <= elements[element].y2)
+    if(event->mouse_x >= buttons[id].x1 && event->mouse_y >= buttons[id].y1 
+    && event->mouse_x <= buttons[id].x2 && event->mouse_y <= buttons[id].y2)
         return true;
     return false;
 }
 
-void get_button_hitbox(UIElements* elements, int button){
+void get_button_hitbox(UIButtons* buttons, int id){
     int width = al_get_text_width(
-        elements[button].UIfont, 
-        elements[button].text);
-    int height = al_get_font_line_height(elements[button].UIfont);
-    elements[button].x1 = elements[button].x_render - (float)width;
-    elements[button].y1 = elements[button].y_render - (float)height;
-    elements[button].x2 = elements[button].x_render + (float)width;
-    elements[button].y2 = elements[button].y_render + (float)height;
+        buttons[id].UIfont, 
+        buttons[id].text);
+    int height = al_get_font_line_height(buttons[id].UIfont);
+    buttons[id].x1 = buttons[id].x_render - (float)width;
+    buttons[id].y1 = buttons[id].y_render - (float)height;
+    buttons[id].x2 = buttons[id].x_render + (float)width;
+    buttons[id].y2 = buttons[id].y_render + (float)height;
+}
+
+void create_text(UIContext* ui, ALLEGRO_FONT *font, int id, float x_pct, float y_pct, const char *text){
+    strcpy(ui->texts[id].text, text);
+
+    ui->texts[id].x = LOGICAL_WIDTH * x_pct;
+    ui->texts[id].y = LOGICAL_HEIGHT * y_pct;
+
+    ui->texts->UIfont = font;
+    ui->texts->color = ui->palette.black;
 }
 
 void create_button(UIContext* ui, RenderContext* render, int id, float x_pct, float y_pct, const char *text, ButtonAction onClick){
-    strcpy(ui->elements[id].text, text);
+    strcpy(ui->buttons[id].text, text);
 
-    ui->elements[id].x = LOGICAL_WIDTH * x_pct;
-    ui->elements[id].y = LOGICAL_HEIGHT * y_pct;
-    ui->elements[id].x_render = render->screen_w * x_pct;
-    ui->elements[id].y_render = render->screen_h * y_pct;
+    ui->buttons[id].x = LOGICAL_WIDTH * x_pct;
+    ui->buttons[id].y = LOGICAL_HEIGHT * y_pct;
+    ui->buttons[id].x_render = render->screen_w * x_pct;
+    ui->buttons[id].y_render = render->screen_h * y_pct;
 
-    ui->elements[id].UIfont = ui->fonts->starmap_normal;
-    ui->elements[id].UIfont_s = ui->fonts->starmap_normal_s;
-    ui->elements[id].color = ui->palette.black;
+    ui->buttons[id].UIfont = ui->fonts->starmap_normal;
+    ui->buttons[id].UIfont_s = ui->fonts->starmap_normal_s;
+    ui->buttons[id].color = ui->palette.black;
 
-    ui->elements[id].onClick = onClick;
-    get_button_hitbox(ui->elements, id);
+    ui->buttons[id].onClick = onClick;
+    get_button_hitbox(ui->buttons, id);
 }
 
 void swap(ItemArr *item_a, ItemArr *item_b){
@@ -78,3 +88,22 @@ void swap(ItemArr *item_a, ItemArr *item_b){
     item_b->color = color;
 }
 
+void update_ui_visibility(UIContext* ui, int current_state){
+    for(int i = 0; i < NMB_BUTTONS; i++){
+        if(ui->buttons[i].visible_mask & current_state){
+            ui->buttons[i].is_visible = true;
+        }
+        else{
+            ui->buttons[i].is_visible = false;
+        }
+    }
+
+    for(int i = 0; i < NMB_TEXTS; i++){
+        if(ui->texts[i].visible_mask & current_state){
+            ui->texts[i].is_visible = true;
+        }
+        else{
+            ui->texts[i].is_visible = false;
+        }
+    }
+}

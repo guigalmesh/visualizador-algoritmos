@@ -51,8 +51,10 @@ void insertion_sort_step(SortContext* ctx){
                 return;
             }
             ctx->key_value = arr->item_arr[ctx->i].value;
+            ctx->key_color = arr->item_arr[ctx->i].color;
             ctx->j = ctx->i - 1;
             ctx->state = PHASE_COMPARE_LOOP;
+            return;
         case PHASE_COMPARE_LOOP:
             if(ctx->j < 0 || arr->item_arr[ctx->j].value < ctx->key_value){
                 ctx->state = PHASE_SWAP;
@@ -63,6 +65,7 @@ void insertion_sort_step(SortContext* ctx){
             return;
         case PHASE_SWAP:
             arr->item_arr[ctx->j + 1].value = ctx->key_value;
+            arr->item_arr[ctx->j + 1].color = ctx->key_color;
             ctx->i++;
             ctx->state = PHASE_INIT_OUTER;
             return;

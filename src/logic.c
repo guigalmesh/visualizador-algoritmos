@@ -8,39 +8,29 @@
 
 void button_bubble_sort(StateContext* state, UIContext* ui, SortContext* sort){
     state->programState = BUBBLE_STATE;
-    ui->elements[INSERTION_SORT].is_visible = false;
-    ui->elements[BUBBLE_SORT].is_visible = false;
-    ui->elements[BACK_TO_MENU].is_visible = true;
-    ui->elements[CLOSE_PROGRAM].is_visible = false;
-    ui->elements[INSERTION_START].is_visible = false;
-    ui->elements[BUBBLE_START].is_visible = true;
+
+    update_ui_visibility(ui, state->programState);
+    
     sort->arr = generate_arr(100, 1, 100);
 }
 
 void button_back_to_menu(StateContext* state, UIContext* ui, SortContext* sort){
     state->programState = MENU_STATE;
-    ui->elements[INSERTION_SORT].is_visible = true;
-    ui->elements[BUBBLE_SORT].is_visible = true;
-    ui->elements[BACK_TO_MENU].is_visible = false;
-    ui->elements[CLOSE_PROGRAM].is_visible = true;
-    ui->elements[INSERTION_START].is_visible = false;
-    ui->elements[BUBBLE_START].is_visible = false;
+
+    update_ui_visibility(ui, state->programState);
+   
     sort->i = 0;
     sort->j = 0;
     sort->is_holding_key = false;
-    sort->key_value = false;
     sort->sort_state = SORTSTATE_IDLE;
     destroy_arr(sort->arr);
 }
 
 void button_insertion_sort(StateContext* state, UIContext* ui, SortContext* sort){
     state->programState = INSERTION_STATE;
-    ui->elements[INSERTION_SORT].is_visible = false;
-    ui->elements[BUBBLE_SORT].is_visible = false;
-    ui->elements[BACK_TO_MENU].is_visible = true;
-    ui->elements[CLOSE_PROGRAM].is_visible = false;
-    ui->elements[INSERTION_START].is_visible = true;
-    ui->elements[BUBBLE_START].is_visible = false;
+
+    update_ui_visibility(ui, state->programState);
+    
     sort->arr = generate_arr(100, 1, 100);
 }
 
@@ -76,12 +66,12 @@ void program_loop(ProgramContext* program){
             case ALLEGRO_EVENT_TIMER:
 
                 if(program->sort.sort_state == SORTSTATE_BUBBLE){
-                    for(int i = 0; i < 1; i++)
+                    for(int i = 0; i < 100; i++)
                         bubble_sort_step(&program->sort);
                 }
 
                 if(program->sort.sort_state == SORTSTATE_INSERTION){
-                    for(int i = 0; i < 1; i++)
+                    for(int i = 0; i < 100; i++)
                         insertion_sort_step(&program->sort);
                 }
                 program->state.redraw = true;
@@ -91,10 +81,10 @@ void program_loop(ProgramContext* program){
                 program->event.mouse_y = event.mouse.y;
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                for(int i = 0; i < MAX_ELEMENTS; i++){
-                    if(is_mouse_hovering_button(&program->event, program->ui.elements, i)){
-                        if(program->ui.elements[i].onClick != NULL){
-                            program->ui.elements[i].onClick(&program->state, &program->ui, &program->sort);
+                for(int i = 0; i < NMB_BUTTONS; i++){
+                    if(is_mouse_hovering_button(&program->event, program->ui.buttons, i)){
+                        if(program->ui.buttons[i].onClick != NULL){
+                            program->ui.buttons[i].onClick(&program->state, &program->ui, &program->sort);
                             break;
                         }
                     }
