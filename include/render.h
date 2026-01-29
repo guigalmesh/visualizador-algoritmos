@@ -14,6 +14,7 @@ void draw_button(EventContext* event, UIButtons* buttons, int element);
 void draw_menu(UIContext* ui, EventContext* event);
 void draw_bubble(UIContext* ui, EventContext* event, SortContext* sort);
 void draw_insertion(UIContext* ui, EventContext* event, SortContext* sort);
+void draw_play_button(UIContext* ui, RenderContext* render);
 void program_render(ProgramContext* program);
 
 #endif

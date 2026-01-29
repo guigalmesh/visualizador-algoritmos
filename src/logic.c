@@ -71,7 +71,7 @@ void program_loop(ProgramContext* program){
                 }
 
                 if(program->sort.sort_state == SORTSTATE_INSERTION){
-                    for(int i = 0; i < 100; i++)
+                    for(int i = 0; i < 10; i++)
                         insertion_sort_step(&program->sort);
                 }
                 program->state.redraw = true;

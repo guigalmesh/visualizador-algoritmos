@@ -84,6 +84,10 @@ void draw_insertion(UIContext* ui, EventContext* event, SortContext* sort){
     draw_itens(sort->arr);
 }
 
+void draw_play_button(UIContext* ui, RenderContext* render){
+    al_draw_filled_circle(ui->elements[1].x, ui->elements[1].y, 5, ui->palette.black);
+}
+
 void program_render(ProgramContext* program){
     al_set_target_bitmap(program->render.render_target);
     al_clear_to_color(program->ui.palette.white);

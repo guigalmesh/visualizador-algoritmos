@@ -10,6 +10,7 @@
 #define LOGICAL_HEIGHT 720
 #define NMB_BUTTONS 6
 #define NMB_TEXTS 1
+#define NMB_ELEMENTS 7
 
 //Estados do programa
 enum ProgramState{
@@ -36,6 +37,12 @@ enum UI_Buttons{
     INSERTION_START,
     BUBBLE_START
 };
+
+typedef enum{
+    TYPE_BUTTON,
+    TYPE_TEXT,
+    TYPE_SLIDER
+}ElementType;
 
 //Cores carregadas com al_map_rgb()
 typedef struct ColorPalette{
@@ -72,6 +79,39 @@ typedef struct SortContext SortContext;
 
 //Function pointer para a ação dos botões
 typedef void (*ButtonAction)(StateContext*, UIContext*, SortContext*);
+typedef void (*DrawElement)(UIContext*, RenderContext*);
+
+
+typedef struct UIElements{
+    float x, y;
+    bool is_visible;
+    int visible_mask;
+    ALLEGRO_COLOR color;
+    ElementType type;
+
+    union{
+        struct{
+            ButtonAction onClick;
+            float x_render, y_render;
+            float width, height;
+            DrawElement draw;
+        } button;
+
+        struct{
+            char content[100];
+            ALLEGRO_FONT *UIfont;
+            ALLEGRO_FONT *UIfont_s;
+        } text;
+
+        struct{
+            DrawElement draw;
+            int min_value, max_value;
+            int* linked_value;
+            bool is_dragging;
+        } slider;
+    } data;
+
+}UIElements;
 
 //Botões da UI
 typedef struct UIButtons{
@@ -100,6 +140,7 @@ typedef struct UIText{
 typedef struct UIContext {
     UIButtons buttons[NMB_BUTTONS];
     UIText texts[NMB_TEXTS];
+    UIElements elements[NMB_ELEMENTS];
     ColorPalette palette;
     FontSet *fonts;
 } UIContext;
@@ -113,6 +154,7 @@ typedef struct StateContext {
 typedef struct SortContext {
     DynamicArr *arr;
     SortState sort_state;
+    int array_size;
     int state;
     int j;
     int i;
