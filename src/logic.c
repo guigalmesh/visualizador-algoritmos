@@ -54,6 +54,19 @@ void button_start_bubble(StateContext* state, UIContext* ui, SortContext* sort){
     sort->state = PHASE_INIT_OUTER;
 }
 
+void handle_clicks(UIContext* ui, StateContext* stctx, SortContext* soctx){
+    for(int i = 0; i < NMB_ELEMENTS; i++){
+        UIElements* el = &ui->elements[i];
+
+        if(el->type == TYPE_TEXT) continue;
+
+        if(el->is_hovering){
+            el->data.button.onClick(stctx, ui, soctx);
+            return;
+        } 
+    }
+}
+
 void program_loop(ProgramContext* program){
     ALLEGRO_EVENT event;
 
@@ -74,21 +87,18 @@ void program_loop(ProgramContext* program){
                     for(int i = 0; i < 10; i++)
                         insertion_sort_step(&program->sort);
                 }
+                
                 program->state.redraw = true;
                 break;
             case ALLEGRO_EVENT_MOUSE_AXES:
                 program->event.mouse_x = event.mouse.x;
                 program->event.mouse_y = event.mouse.y;
+
+                ui_update_hover_flag(&program->ui, event.mouse.x, event.mouse.y);
+                
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:
-                for(int i = 0; i < NMB_BUTTONS; i++){
-                    if(is_mouse_hovering_button(&program->event, program->ui.buttons, i)){
-                        if(program->ui.buttons[i].onClick != NULL){
-                            program->ui.buttons[i].onClick(&program->state, &program->ui, &program->sort);
-                            break;
-                        }
-                    }
-                }
+                handle_clicks(&program->ui, &program->state, &program->sort);
                 break;
         }
         if(program->state.redraw && al_is_event_queue_empty(program->event.queue)){

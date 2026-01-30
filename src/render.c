@@ -41,51 +41,80 @@ void draw_itens(DynamicArr* arr){
     }
 }
 
-void draw_text(UIText* texts, int id){
-    al_draw_text(texts[id].UIfont, texts[id].color, 
-        texts[id].x, texts[id].y, 
-        ALLEGRO_ALIGN_CENTER, texts[id].text);
+void draw_text(UIElements* el){
+    al_draw_text(el->data.text.UIfont, el->color, 
+        el->x, el->y, 
+        ALLEGRO_ALIGN_CENTER, el->data.text.content);
 }
 
-void draw_button(EventContext* event, UIButtons* buttons, int id){
-    ALLEGRO_FONT* font = is_mouse_hovering_button(event, buttons, id) ?
-    buttons[id].UIfont_s : buttons[id].UIfont;
-    al_draw_text(font, buttons[id].color, 
-        buttons[id].x, buttons[id].y, 
-        ALLEGRO_ALIGN_CENTER, buttons[id].text);
+void draw_icon_button(UIElements* el){
+    float x = el->x;
+    float y = el->y;
+    float w = el->width;
+    float h = el->height;
+
+    ALLEGRO_COLOR color = el->is_hovering ? al_map_rgb(0, 0, 0) : al_map_rgb(10, 10, 10);
+
+    float pad = w * 0.25;
+
+    switch(el->data.button.icon_id){
+        case ICON_PLAY:
+            al_draw_filled_triangle(x + pad, y + pad, x + pad, 
+                y + h - pad, x + w - pad, 
+                y + h / 2, color);
+            break;
+    }
+}
+
+void draw_text_button(UIElements* el){
+    ALLEGRO_FONT* font = el->is_hovering ? el->data.button.UIfont_s : el->data.button.UIfont;
+    al_draw_text(font, el->color, el->x, el->y, ALLEGRO_ALIGN_CENTER, el->data.button.label);
+}
+
+void draw_button(UIElements* el){
+    switch(el->type){
+        case BUTTON_ICON:
+            draw_icon_button(el);
+            break;
+        case BUTTON_TEXT:
+            draw_text_button(el);
+            break;
+    }
+}
+
+void draw_ui_elements(UIContext* ui){
+    for(int i = 0; i < NMB_ELEMENTS; i++){
+        UIElements* el = &ui->elements[i];
+
+        if(!el->is_visible) continue;
+
+        switch(ui->elements[i].type){
+            case TYPE_TEXT:
+                draw_text(el);
+                break;
+            case TYPE_BUTTON:
+                draw_button(el);
+                break;
+            case TYPE_SLIDER:
+                break;
+        }
+    }
 }
 
 void draw_menu(UIContext* ui, EventContext* event){
-    //Titulo "VISUALIZER"
-    draw_text(ui->texts, VISUALIZER);
-    //Botão "BUBBLE SORT"
-    draw_button(event, ui->buttons, BUBBLE_SORT);
-    //Botão "INSERTION SORT"
-    draw_button(event, ui->buttons, INSERTION_SORT);
-    //Botão "CLOSE PROGRAM"
-    draw_button(event, ui->buttons, CLOSE_PROGRAM);
+    draw_ui_elements(ui);
 }
 
 void draw_bubble(UIContext* ui, EventContext* event, SortContext* sort){
-    //Botão "BACK"
-    draw_button(event, ui->buttons, BACK_TO_MENU);
-
-    draw_button(event, ui->buttons, BUBBLE_START);
+    draw_ui_elements(ui);
 
     draw_itens(sort->arr);
 }
 
 void draw_insertion(UIContext* ui, EventContext* event, SortContext* sort){
-    //Botão "BACK"
-    draw_button(event, ui->buttons, BACK_TO_MENU);
-
-    draw_button(event, ui->buttons, INSERTION_START);
+    draw_ui_elements(ui);
 
     draw_itens(sort->arr);
-}
-
-void draw_play_button(UIContext* ui, RenderContext* render){
-    al_draw_filled_circle(ui->elements[1].x, ui->elements[1].y, 5, ui->palette.black);
 }
 
 void program_render(ProgramContext* program){

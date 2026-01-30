@@ -2,6 +2,7 @@
 #include "logic.h"
 #include "utils.h"
 #include "algos.h"
+#include "render.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -13,19 +14,25 @@
 void create_user_interface(UIContext* ui, RenderContext* render){
 
     create_text(ui, ui->fonts->starmap_large, VISUALIZER, 0.50, 0.25, "VISUALIZER");
-    ui->texts[VISUALIZER].visible_mask = MENU_STATE;
-    create_button(ui, render, BUBBLE_SORT, 0.50, 0.35, "BUBBLE SORT", button_bubble_sort);
-    ui->buttons[BUBBLE_SORT].visible_mask = MENU_STATE;
-    create_button(ui, render, INSERTION_SORT, 0.50, 0.45, "INSERTION SORT", button_insertion_sort);
-    ui->buttons[INSERTION_SORT].visible_mask = MENU_STATE;
-    create_button(ui, render, BACK_TO_MENU, 0.05, 0.10, "BACK", button_back_to_menu);
-    ui->buttons[BACK_TO_MENU].visible_mask = BUBBLE_STATE | INSERTION_STATE;
-    create_button(ui, render, CLOSE_PROGRAM, 0.90, 0.10, "X", button_close_program);
-    ui->buttons[CLOSE_PROGRAM].visible_mask = MENU_STATE;
-    create_button(ui, render, INSERTION_START, 0.90, 0.10, "start_insertion", button_start_insertion);
-    ui->buttons[INSERTION_START].visible_mask = INSERTION_STATE;
-    create_button(ui, render, BUBBLE_START, 0.90, 0.10, "start_bubble", button_start_bubble);
-    ui->buttons[BUBBLE_START].visible_mask = BUBBLE_STATE;
+    ui->elements[VISUALIZER].visible_mask = MENU_STATE;
+
+    create_text_button(ui, render, BUBBLE_SORT, 0.50, 0.35, "BUBBLE SORT", button_bubble_sort);
+    ui->elements[BUBBLE_SORT].visible_mask = MENU_STATE;
+
+    create_text_button(ui, render, INSERTION_SORT, 0.50, 0.45, "INSERTION SORT", button_insertion_sort);
+    ui->elements[INSERTION_SORT].visible_mask = MENU_STATE;
+
+    create_icon_button(ui, render, 0.1, BACK_TO_MENU, 0.05, 0.10, button_back_to_menu);
+    ui->elements[BACK_TO_MENU].visible_mask = BUBBLE_STATE | INSERTION_STATE;
+
+    create_icon_button(ui, render, 0.1, CLOSE_PROGRAM, 0.90, 0.10, button_close_program);
+    ui->elements[CLOSE_PROGRAM].visible_mask = MENU_STATE;
+
+    create_icon_button(ui, render, 0.1, INSERTION_START, 0.90, 0.10, button_start_insertion);
+    ui->elements[INSERTION_START].visible_mask = INSERTION_STATE;
+
+    create_icon_button(ui, render, 0.1, BUBBLE_START, 0.90, 0.10, button_start_bubble);
+    ui->elements[BUBBLE_START].visible_mask = BUBBLE_STATE;
 
     update_ui_visibility(ui, MENU_STATE);
 }
