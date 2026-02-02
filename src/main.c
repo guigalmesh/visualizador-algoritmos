@@ -7,6 +7,7 @@
 
 int main(){
     ProgramContext program;
+    memset(&program, 0, sizeof(ProgramContext));
 
     init_sequence(&program);
 

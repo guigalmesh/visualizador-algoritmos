@@ -8,8 +8,7 @@
 
 #define LOGICAL_WIDTH 1280
 #define LOGICAL_HEIGHT 720
-#define NMB_BUTTONS 6
-#define NMB_TEXTS 1
+#define NMB_ELEMENTS 7
 
 //Estados do programa
 enum ProgramState{
@@ -24,11 +23,8 @@ typedef enum{
     SORTSTATE_INSERTION
 } SortState;
 
-enum UI_Text{
-    VISUALIZER
-};
-
-enum UI_Buttons{
+enum UI_Elements{
+    VISUALIZER,
     BUBBLE_SORT,
     INSERTION_SORT,
     BACK_TO_MENU,
@@ -36,6 +32,21 @@ enum UI_Buttons{
     INSERTION_START,
     BUBBLE_START
 };
+
+typedef enum{ BUTTON_ICON, BUTTON_TEXT } ButtonType;
+
+typedef enum{
+    TYPE_BUTTON,
+    TYPE_TEXT,
+    TYPE_SLIDER
+}ElementType;
+
+typedef enum {
+    ICON_NONE,
+    ICON_PLAY,
+    ICON_CLOSE,
+    ICON_ARROW_LEFT
+} IconType;
 
 //Cores carregadas com al_map_rgb()
 typedef struct ColorPalette{
@@ -69,37 +80,51 @@ typedef struct EventContext {
 typedef struct StateContext StateContext;
 typedef struct UIContext UIContext;
 typedef struct SortContext SortContext;
+struct UIElements;
 
 //Function pointer para a ação dos botões
 typedef void (*ButtonAction)(StateContext*, UIContext*, SortContext*);
+typedef void (*DrawElement)(struct UIElements* btn);
 
-//Botões da UI
-typedef struct UIButtons{
-    ALLEGRO_FONT *UIfont;
-    ALLEGRO_FONT *UIfont_s;
-    ALLEGRO_COLOR color;
-    char text[100];
-    float x, y, x_render, y_render;
-    float width, height;
-    float x1, y1, x2, y2;
-    bool is_visible;
-    int visible_mask;
-    ButtonAction onClick;
-}UIButtons;
 
-typedef struct UIText{
-    ALLEGRO_FONT *UIfont;
-    ALLEGRO_FONT *UIfont_s;
-    ALLEGRO_COLOR color;
-    char text[100];
+typedef struct UIElements{
     float x, y;
     bool is_visible;
+    bool is_hovering;
     int visible_mask;
-}UIText;
+    float width, height;
+    ALLEGRO_COLOR color;
+    ElementType type;
+
+    union{
+        struct{
+            ButtonType button_type;
+            ButtonAction onClick;
+            int icon_size;
+            int icon_id;
+            float x_render, y_render;
+            char label[32];
+            ALLEGRO_FONT *UIfont;
+            ALLEGRO_FONT *UIfont_s;
+        } button;
+
+        struct{
+            ALLEGRO_FONT *UIfont;
+            char content[100];
+        } text;
+
+        struct{
+            DrawElement draw;
+            int min_value, max_value;
+            int* linked_value;
+            bool is_dragging;
+        } slider;
+    } data;
+
+}UIElements;
 
 typedef struct UIContext {
-    UIButtons buttons[NMB_BUTTONS];
-    UIText texts[NMB_TEXTS];
+    UIElements elements[NMB_ELEMENTS];
     ColorPalette palette;
     FontSet *fonts;
 } UIContext;
@@ -113,6 +138,7 @@ typedef struct StateContext {
 typedef struct SortContext {
     DynamicArr *arr;
     SortState sort_state;
+    int array_size;
     int state;
     int j;
     int i;
