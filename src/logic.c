@@ -94,7 +94,7 @@ void program_loop(ProgramContext* program){
                 program->event.mouse_x = event.mouse.x;
                 program->event.mouse_y = event.mouse.y;
 
-                ui_update_hover_flag(&program->ui, event.mouse.x, event.mouse.y);
+                ui_update_hover_flag(&program->ui, &program->render, event.mouse.x, event.mouse.y);
                 
                 break;
             case ALLEGRO_EVENT_MOUSE_BUTTON_DOWN:

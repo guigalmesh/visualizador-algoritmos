@@ -23,11 +23,8 @@ typedef enum{
     SORTSTATE_INSERTION
 } SortState;
 
-enum UI_Text{
-    VISUALIZER
-};
-
-enum UI_Buttons{
+enum UI_Elements{
+    VISUALIZER,
     BUBBLE_SORT,
     INSERTION_SORT,
     BACK_TO_MENU,
@@ -47,9 +44,8 @@ typedef enum{
 typedef enum {
     ICON_NONE,
     ICON_PLAY,
-    ICON_PAUSE,
-    ICON_RESET,
-    ICON_ARROW_RIGHT
+    ICON_CLOSE,
+    ICON_ARROW_LEFT
 } IconType;
 
 //Cores carregadas com al_map_rgb()

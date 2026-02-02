@@ -53,9 +53,10 @@ void draw_icon_button(UIElements* el){
     float w = el->width;
     float h = el->height;
 
-    ALLEGRO_COLOR color = el->is_hovering ? al_map_rgb(0, 0, 0) : al_map_rgb(10, 10, 10);
+    ALLEGRO_COLOR color = el->is_hovering ? al_map_rgb(0, 255, 0) : al_map_rgb(0, 0, 0);
 
-    float pad = w * 0.25;
+    float pad = w * 0.15;
+    float thick = w * 0.05;
 
     switch(el->data.button.icon_id){
         case ICON_PLAY:
@@ -63,16 +64,49 @@ void draw_icon_button(UIElements* el){
                 y + h - pad, x + w - pad, 
                 y + h / 2, color);
             break;
+        case ICON_CLOSE:
+            al_draw_line(x + pad, y + pad, 
+                x + w - pad,  y + h - pad, 
+                color, thick);
+
+            al_draw_line(x + pad, y + h - pad, 
+                x + w - pad, y + pad, 
+                color, thick);
+            break;
+        case ICON_ARROW_LEFT:
+            float center_y = y + h / 2.0f;
+    
+            float head_start_x = x + pad;
+            float head_end_x   = x + (w * 0.4f);
+    
+            float head_half_h  = (h * 0.25f);
+    
+            al_draw_filled_triangle(head_start_x, center_y, 
+                head_end_x, center_y - head_half_h, 
+                head_end_x, center_y + head_half_h, 
+                color);
+    
+            float tail_end_x = x + w - pad;
+    
+            al_draw_line(head_end_x - 1, center_y, 
+                tail_end_x, center_y, 
+                color, thick);
+            break;
     }
 }
 
 void draw_text_button(UIElements* el){
     ALLEGRO_FONT* font = el->is_hovering ? el->data.button.UIfont_s : el->data.button.UIfont;
-    al_draw_text(font, el->color, el->x, el->y, ALLEGRO_ALIGN_CENTER, el->data.button.label);
+
+    float center_x = el->x + (el->width / 2.0f);
+
+    float text_y = el->y;
+
+    al_draw_text(font, el->color, center_x, text_y, ALLEGRO_ALIGN_CENTER, el->data.button.label);
 }
 
 void draw_button(UIElements* el){
-    switch(el->type){
+    switch(el->data.button.button_type){
         case BUTTON_ICON:
             draw_icon_button(el);
             break;
@@ -93,6 +127,7 @@ void draw_ui_elements(UIContext* ui){
                 draw_text(el);
                 break;
             case TYPE_BUTTON:
+
                 draw_button(el);
                 break;
             case TYPE_SLIDER:

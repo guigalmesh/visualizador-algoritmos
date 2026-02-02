@@ -22,16 +22,16 @@ void create_user_interface(UIContext* ui, RenderContext* render){
     create_text_button(ui, render, INSERTION_SORT, 0.50, 0.45, "INSERTION SORT", button_insertion_sort);
     ui->elements[INSERTION_SORT].visible_mask = MENU_STATE;
 
-    create_icon_button(ui, render, 0.1, BACK_TO_MENU, 0.05, 0.10, button_back_to_menu);
+    create_icon_button(ui, render, 50, BACK_TO_MENU, 0.05, 0.10, ICON_ARROW_LEFT, button_back_to_menu);
     ui->elements[BACK_TO_MENU].visible_mask = BUBBLE_STATE | INSERTION_STATE;
 
-    create_icon_button(ui, render, 0.1, CLOSE_PROGRAM, 0.90, 0.10, button_close_program);
+    create_icon_button(ui, render, 50, CLOSE_PROGRAM, 0.90, 0.10, ICON_CLOSE, button_close_program);
     ui->elements[CLOSE_PROGRAM].visible_mask = MENU_STATE;
 
-    create_icon_button(ui, render, 0.1, INSERTION_START, 0.90, 0.10, button_start_insertion);
+    create_icon_button(ui, render, 50, INSERTION_START, 0.90, 0.10, ICON_PLAY, button_start_insertion);
     ui->elements[INSERTION_START].visible_mask = INSERTION_STATE;
 
-    create_icon_button(ui, render, 0.1, BUBBLE_START, 0.90, 0.10, button_start_bubble);
+    create_icon_button(ui, render, 50, BUBBLE_START, 0.90, 0.10, ICON_PLAY, button_start_bubble);
     ui->elements[BUBBLE_START].visible_mask = BUBBLE_STATE;
 
     update_ui_visibility(ui, MENU_STATE);
