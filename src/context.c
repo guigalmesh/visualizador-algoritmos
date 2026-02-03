@@ -55,16 +55,29 @@ void create_fonts(FontSet* fonts){
 }
 
 void create_program_context(ProgramContext* program){
+
     al_set_new_display_flags(ALLEGRO_NOFRAME | ALLEGRO_WINDOWED);
     ALLEGRO_MONITOR_INFO monitor_info;
     al_get_monitor_info(0, &monitor_info);
     int screen_w = monitor_info.x2 - monitor_info.x1;
     int screen_h = monitor_info.y2 - monitor_info.y1;
-    program->render.screen_w = screen_w;
-    program->render.screen_h = screen_h;
-    ALLEGRO_DISPLAY *display = al_create_display(screen_w, screen_h);
+
+    ALLEGRO_DISPLAY *display = al_create_display(screen_w, screen_h); 
     must_init(display, "display");
     program->render.display = display;
+
+    int real_w = al_get_display_width(display);
+    int real_h = al_get_display_height(display);
+    
+    program->render.screen_w = real_w;
+    program->render.screen_h = real_h;
+
+    update_render_geometry(&program->render);
+
+    ALLEGRO_BITMAP *icon = al_load_bitmap("assets/hotbar-icon.png");
+    must_init(icon, "hotbar icon");
+    al_set_display_icon(display, icon);
+    al_destroy_bitmap(icon);
 
     ALLEGRO_BITMAP *render_target = al_create_bitmap(LOGICAL_WIDTH, LOGICAL_HEIGHT);
     must_init(render_target, "render target");

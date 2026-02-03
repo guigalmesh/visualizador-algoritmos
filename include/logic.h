@@ -9,6 +9,8 @@ void button_insertion_sort(StateContext* state, UIContext* ui, SortContext* sort
 void button_close_program(StateContext* state, UIContext* ui, SortContext* sort);
 void button_start_insertion(StateContext* state, UIContext* ui, SortContext* sort);
 void button_start_bubble(StateContext* state, UIContext* ui, SortContext* sort);
+void handle_clicks(UIContext* ui, StateContext* stctx, SortContext* soctx);
+void handle_resize(RenderContext* render);
 void program_loop(ProgramContext* program);
 
 #endif

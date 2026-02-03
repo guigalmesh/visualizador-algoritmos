@@ -67,6 +67,11 @@ void handle_clicks(UIContext* ui, StateContext* stctx, SortContext* soctx){
     }
 }
 
+void handle_resize(RenderContext* render){
+    al_acknowledge_resize(render->display);
+    update_render_geometry(render);
+}
+
 void program_loop(ProgramContext* program){
     ALLEGRO_EVENT event;
 

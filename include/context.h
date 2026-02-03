@@ -68,7 +68,11 @@ typedef struct ProgramContext ProgramContext;
 typedef struct RenderContext {
     ALLEGRO_DISPLAY *display;
     ALLEGRO_BITMAP *render_target;
-    int screen_w, screen_h;
+    int screen_w; // altura real da janela
+    int screen_h; // altura real da janela
+    float scale; // escala calculada
+    float offset_x; // barra preta horizontal
+    float offset_y; // barra preta vertical
 } RenderContext;
 
 typedef struct EventContext {

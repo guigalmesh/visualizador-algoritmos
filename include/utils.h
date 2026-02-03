@@ -8,7 +8,9 @@
 void must_init(bool test, const char* description);
 void register_event_sources(EventContext* event, RenderContext* render);
 void init_sequence(ProgramContext* program);
-bool is_mouse_hovering(UIElements* el, float mx, float my);
+void update_render_geometry(RenderContext* render);
+void get_mouse_logical_pos(RenderContext* render, int raw_mx, int raw_my, float* out_x, float* out_y);
+bool is_mouse_hovering(UIElements* el, RenderContext *ren, float mx, float my);
 void ui_update_hover_flag(UIContext* ui, RenderContext* render, float raw_mx, float raw_my);
 void create_text(UIContext* ui, ALLEGRO_FONT *font, int id, float x_pct, float y_pct, const char *text);
 void create_icon_button(UIContext* ui, RenderContext* render, float s_pct, int id, float x_pct, float y_pct, IconType iid, ButtonAction onClick);

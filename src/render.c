@@ -11,21 +11,14 @@
 void draw_scaled_render_target(RenderContext* render, UIContext* ui){
     al_set_target_backbuffer(render->display);
 
-    int screen_w = al_get_display_width(render->display);
-    int screen_h = al_get_display_height(render->display);
-
-    float scale_x = (float)screen_w / LOGICAL_WIDTH;
-    float scale_y = (float)screen_h / LOGICAL_HEIGHT;
-    float scale = fmin(scale_x, scale_y);
-
-    float scaled_w = LOGICAL_WIDTH * scale;
-    float scaled_h = LOGICAL_HEIGHT * scale;
-    float offset_x = (screen_w - scaled_w) / 2;
-    float offset_y = (screen_h - scaled_h) / 2;
-
     al_clear_to_color(ui->palette.black);
-    al_draw_scaled_bitmap(render->render_target, 0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT, 
-        offset_x, offset_y, scaled_w, scaled_h, 0);
+    al_draw_scaled_bitmap(render->render_target, 
+        0, 0, LOGICAL_WIDTH, LOGICAL_HEIGHT, 
+        render->offset_x, render->offset_y, 
+        LOGICAL_WIDTH * render->scale, 
+        LOGICAL_HEIGHT * render->scale, 
+        0
+    );
 }
 
 void draw_itens(DynamicArr* arr){
@@ -99,8 +92,10 @@ void draw_text_button(UIElements* el){
     ALLEGRO_FONT* font = el->is_hovering ? el->data.button.UIfont_s : el->data.button.UIfont;
 
     float center_x = el->x + (el->width / 2.0f);
-
-    float text_y = el->y;
+    float center_y = el->y + (el->height / 2.0f);
+    
+    float font_h = al_get_font_line_height(el->data.button.UIfont);
+    float text_y = center_y - (font_h / 2.0f);
 
     al_draw_text(font, el->color, center_x, text_y, ALLEGRO_ALIGN_CENTER, el->data.button.label);
 }
@@ -120,6 +115,8 @@ void draw_ui_elements(UIContext* ui){
     for(int i = 0; i < NMB_ELEMENTS; i++){
         UIElements* el = &ui->elements[i];
 
+        draw_debug_hitbox(el);
+        
         if(!el->is_visible) continue;
 
         switch(ui->elements[i].type){
@@ -127,7 +124,6 @@ void draw_ui_elements(UIContext* ui){
                 draw_text(el);
                 break;
             case TYPE_BUTTON:
-
                 draw_button(el);
                 break;
             case TYPE_SLIDER:
@@ -168,5 +164,22 @@ void program_render(ProgramContext* program){
     }
     al_set_target_backbuffer(program->render.display);
     draw_scaled_render_target(&program->render, &program->ui);
+    // Dentro de program_render, ANTES de al_flip_display():
+
+    // 1. Pega a posição crua do mouse
+    ALLEGRO_MOUSE_STATE ms;
+    al_get_mouse_state(&ms);
+
+    // 2. Converte para lógico usando SUA função atual
+    float log_x, log_y;
+    get_mouse_logical_pos(&program->render, ms.x, ms.y, &log_x, &log_y);
+
+    // 3. Desenha a cruz no buffer da tela (acima de tudo)
+    // Convertemos DE VOLTA para tela para desenhar no lugar exato
+    float screen_x = (log_x * program->render.scale) + program->render.offset_x;
+    float screen_y = (log_y * program->render.scale) + program->render.offset_y;
+
+    al_draw_line(screen_x - 10, screen_y, screen_x + 10, screen_y, al_map_rgb(0, 255, 255), 2);
+    al_draw_line(screen_x, screen_y - 10, screen_x, screen_y + 10, al_map_rgb(0, 255, 255), 2);
     al_flip_display();
 }

@@ -4,10 +4,12 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <math.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_image.h>
 
 void must_init(bool test, const char* description){
     if(test) return;
@@ -28,39 +30,47 @@ void init_sequence(ProgramContext* program){
     must_init(al_init_font_addon(), "font");
     must_init(al_init_ttf_addon(), "ttf addon");
     must_init(al_install_mouse(), "mouse");
+    must_init(al_init_image_addon(), "images");
     create_program_context(program);
 }
 
-bool is_mouse_hovering(UIElements *el, float mx, float my){
+void update_render_geometry(RenderContext* render){
+    render->screen_w = al_get_display_width(render->display);
+    render->screen_h = al_get_display_height(render->display);
+
+    float scale_x = (float)render->screen_w / LOGICAL_WIDTH;
+    float scale_y = (float)render->screen_h / LOGICAL_HEIGHT;
+
+    render->scale = scale_x < scale_y ? scale_x : scale_y;
+
+    float scaled_w = LOGICAL_WIDTH * render->scale;
+    float scaled_h = LOGICAL_HEIGHT * render->scale;
+
+    render->offset_x = (render->screen_w - scaled_w) / 2.0f;
+    render->offset_y = (render->screen_h - scaled_h) / 2.0f;
+}
+
+void get_mouse_logical_pos(RenderContext* render, int raw_mx, int raw_my, float* out_x, float* out_y){
+    *out_x = (raw_mx - render->offset_x) / render->scale;
+    *out_y = (raw_my - render->offset_y) / render->scale;
+}
+
+bool is_mouse_hovering(UIElements *el, RenderContext *ren, float mx, float my){
     if(el->type == TYPE_TEXT) return false;
 
     if(!el->is_visible){
         return false;
     }
 
-    if(el->type == TYPE_BUTTON){
-        float ex = el->x;
-        float ey = el->y;
-
-        float x1 = ex - (float)el->width / 2.0f;
-        float y1 = ey - (float)el->height / 2.0f;
-        float x2 = ex + (float)el->width / 2.0f;
-        float y2 = ey + (float)el->height / 2.0f;
-
-        if(mx >= x1 && my >= y1 && mx <= x2 && my <= y2)
-            return true;
-    }
+    bool inside_x = (mx >= el->x) && (mx <= el->x + el->width);
+    bool inside_y = (my >= el->y) && (my <= el->y + el->height);
     
-    return false;       
+    return inside_x && inside_y;
 }
 
 void ui_update_hover_flag(UIContext* ui, RenderContext* render, float raw_mx, float raw_my){
-    //Convertendo a escala do mouse
-    float scale_x = (float)render->screen_w / LOGICAL_WIDTH;
-    float scale_y = (float)render->screen_h / LOGICAL_HEIGHT;
-
-    float logical_mx = raw_mx / scale_x;
-    float logical_my = raw_my / scale_y;
+    float logical_mx, logical_my;
+    get_mouse_logical_pos(render, raw_mx, raw_my, &logical_mx, &logical_my);
 
     for(int i = 0; i < NMB_ELEMENTS; i++){
         UIElements* el = &ui->elements[i];
@@ -72,7 +82,7 @@ void ui_update_hover_flag(UIContext* ui, RenderContext* render, float raw_mx, fl
             continue;
         }
 
-        if(is_mouse_hovering(el, logical_mx, logical_my))
+        if(is_mouse_hovering(el, render, logical_mx, logical_my))
             el->is_hovering = true;
         else
             el->is_hovering = false;
