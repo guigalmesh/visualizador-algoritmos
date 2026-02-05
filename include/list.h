@@ -17,7 +17,7 @@ typedef struct DynamicArr{
 DynamicArr* create_arr(int initial_capacity);
 void destroy_arr(DynamicArr* array);
 void append_arr(DynamicArr* array, int value);
-DynamicArr* generate_arr(int n_items, int min, int max);
+DynamicArr* generate_arr(int array_size, int min, int max);
 void print_arr(DynamicArr* arr);
 
 #endif

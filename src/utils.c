@@ -64,6 +64,8 @@ bool is_mouse_hovering(UIElements *el, RenderContext *ren, float mx, float my){
 
     bool inside_x = (mx >= el->x) && (mx <= el->x + el->width);
     bool inside_y = (my >= el->y) && (my <= el->y + el->height);
+
+    if(inside_x && inside_y && el->type == TYPE_SLIDER) printf("hovering slider");
     
     return inside_x && inside_y;
 }
@@ -116,9 +118,6 @@ void create_icon_button(UIContext* ui, RenderContext* render, float s_pct, int i
     el->data.button.icon_id = iid;
     el->visible_mask = 0;
 
-    el->data.button.x_render = render->screen_w * x_pct;
-    el->data.button.y_render = render->screen_h * y_pct;
-
     el->width = s_pct;
     el->height = s_pct;
 
@@ -128,7 +127,7 @@ void create_icon_button(UIContext* ui, RenderContext* render, float s_pct, int i
     el->x = center_x - (el->width / 2.0f);
     el->y = center_y - (el->height / 2.0f);
 
-    el->data.button.onClick = onClick;
+    el->onClick = onClick;
 
     el->color = ui->palette.black;
 
@@ -154,18 +153,51 @@ void create_text_button(UIContext* ui, RenderContext* render, int id, float x_pc
     el->x = desired_center_x - (el->width / 2.0f);
     el->y = desired_center_y - (el->height / 2.0f);
 
-    el->data.button.x_render = render->screen_w * x_pct;
-    el->data.button.y_render = render->screen_h * y_pct;
-
     el->data.button.UIfont = ui->fonts->starmap_normal;
     el->data.button.UIfont_s = ui->fonts->starmap_normal_s;
 
     el->color = ui->palette.black;
 
-    el->data.button.onClick = onClick;
+    el->onClick = onClick;
 
 
     el->is_visible = true;
+}
+
+void create_slider(UIContext* ui, SortContext* sort, RenderContext* render, int id, float x_pct, float y_pct, ButtonAction onClick){
+    UIElements* el = &ui->elements[id];
+
+    el->type = TYPE_SLIDER;
+
+    el->visible_mask = 0;
+
+    el->data.slider.min_value = MIN_COLUMNS;
+    el->data.slider.max_value = MAX_COLUMNS;
+
+    el->width = 12;
+    el->height = 12;
+
+    el->data.slider.is_dragging = false;
+    el->data.slider.line_size = 100;
+
+    float center_x = LOGICAL_WIDTH * x_pct;
+    float center_y = LOGICAL_HEIGHT * y_pct;
+
+    el->x = center_x - (el->width / 2.0f);
+    el->y = center_y - (el->height / 2.0f);
+
+    el->data.slider.line_px1 = el->x - (el->data.slider.line_size / 2);
+    el->data.slider.line_px2 = el->x + (el->data.slider.line_size / 2);
+    el->data.slider.line_y = el->y + (el->width / 2);
+
+    el->onClick = onClick;
+
+    el->data.slider.linked_value = &sort->array_size;
+    // S = MAX * X' / SI
+    // S = array_size
+    // MAX = MAX_COLUMNS
+    // X' = slider x pos
+    // SI = stripe x1 - stripe x2
 }
 
 void swap(ItemArr *item_a, ItemArr *item_b){
@@ -191,6 +223,7 @@ void update_ui_visibility(UIContext* ui, int current_state){
     }
 }
 
+// DEBUG FUNCTION
 void draw_debug_hitbox(UIElements* el) {
     if (!el->is_visible) return;
     

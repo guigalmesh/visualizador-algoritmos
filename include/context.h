@@ -8,7 +8,7 @@
 
 #define LOGICAL_WIDTH 1280
 #define LOGICAL_HEIGHT 720
-#define NMB_ELEMENTS 7
+#define NMB_ELEMENTS 8
 
 //Estados do programa
 enum ProgramState{
@@ -30,7 +30,8 @@ enum UI_Elements{
     BACK_TO_MENU,
     CLOSE_PROGRAM,
     INSERTION_START,
-    BUBBLE_START
+    BUBBLE_START,
+    ARRAY_SIZE_SLIDER
 };
 
 typedef enum{ BUTTON_ICON, BUTTON_TEXT } ButtonType;
@@ -45,7 +46,8 @@ typedef enum {
     ICON_NONE,
     ICON_PLAY,
     ICON_CLOSE,
-    ICON_ARROW_LEFT
+    ICON_ARROW_LEFT,
+    ICON_ARRAY_SLIDER
 } IconType;
 
 //Cores carregadas com al_map_rgb()
@@ -99,14 +101,13 @@ typedef struct UIElements{
     float width, height;
     ALLEGRO_COLOR color;
     ElementType type;
+    ButtonAction onClick;
 
     union{
         struct{
             ButtonType button_type;
-            ButtonAction onClick;
             int icon_size;
             int icon_id;
-            float x_render, y_render;
             char label[32];
             ALLEGRO_FONT *UIfont;
             ALLEGRO_FONT *UIfont_s;
@@ -118,10 +119,14 @@ typedef struct UIElements{
         } text;
 
         struct{
-            DrawElement draw;
             int min_value, max_value;
-            int* linked_value;
+            int drawing_size;
+            float line_size;
+            float line_px1, line_px2;
+            float line_y;
             bool is_dragging;
+            int icon_id;
+            int *linked_value;
         } slider;
     } data;
 
@@ -161,7 +166,7 @@ typedef struct ProgramContext{
 }ProgramContext;
 
 //Carrega os elementos da UI
-void create_user_interface(UIContext* ui, RenderContext* render);
+void create_user_interface(UIContext* ui, SortContext* sort, RenderContext* render);
 //Carrega as cores
 void create_color_palette(ColorPalette* palette);
 //Carrega as fontes

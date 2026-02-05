@@ -34,9 +34,9 @@ void append_arr(DynamicArr* arr, int value){
         arr->capacity *= 2;
         arr->item_arr = realloc(arr->item_arr, sizeof(ItemArr) * arr->capacity);
         if(arr->item_arr == NULL){
-        printf("failed to resize item_arr\n");
-        exit(1);
-    }
+            printf("failed to resize item_arr\n");
+            exit(1);
+        }
     }
 
     arr->item_arr[arr->size].value = value;
@@ -44,11 +44,11 @@ void append_arr(DynamicArr* arr, int value){
     arr->size++;
 }
 
-DynamicArr* generate_arr(int n_items, int min, int max){
+DynamicArr* generate_arr(int array_size, int min, int max){
     srand(time(NULL));
-    DynamicArr* arr = create_arr(n_items);
+    DynamicArr* arr = create_arr(array_size);
     arr->max_number = max;
-    for(int i = 0; i < n_items; i++){
+    for(int i = 0; i < array_size; i++){
         int value = (rand() % max) + min;
         append_arr(arr, value);
     }

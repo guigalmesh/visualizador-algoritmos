@@ -11,7 +11,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
-void create_user_interface(UIContext* ui, RenderContext* render){
+void create_user_interface(UIContext* ui, SortContext* sort, RenderContext* render){
 
     create_text(ui, ui->fonts->starmap_large, VISUALIZER, 0.50, 0.25, "VISUALIZER");
     ui->elements[VISUALIZER].visible_mask = MENU_STATE;
@@ -33,6 +33,9 @@ void create_user_interface(UIContext* ui, RenderContext* render){
 
     create_icon_button(ui, render, 50, BUBBLE_START, 0.90, 0.10, ICON_PLAY, button_start_bubble);
     ui->elements[BUBBLE_START].visible_mask = BUBBLE_STATE;
+
+    create_slider(ui, sort, render, ARRAY_SIZE_SLIDER, 0.80, 0.80, button_slider);
+    ui->elements[ARRAY_SIZE_SLIDER].visible_mask = INSERTION_STATE | BUBBLE_STATE;
 
     update_ui_visibility(ui, MENU_STATE);
 }
@@ -107,7 +110,7 @@ void create_program_context(ProgramContext* program){
     create_fonts(fonts);
     program->ui.fonts = fonts;
 
-    create_user_interface(&program->ui, &program->render);
+    create_user_interface(&program->ui, &program->sort, &program->render);
 }
 
 void destroy_program_context(ProgramContext* program){

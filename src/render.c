@@ -53,9 +53,10 @@ void draw_icon_button(UIElements* el){
 
     switch(el->data.button.icon_id){
         case ICON_PLAY:
-            al_draw_filled_triangle(x + pad, y + pad, x + pad, 
-                y + h - pad, x + w - pad, 
-                y + h / 2, color);
+            al_draw_filled_triangle(x + pad, y + pad, 
+                x + pad, y + h - pad, 
+                x + w - pad, y + h / 2, 
+                color);
             break;
         case ICON_CLOSE:
             al_draw_line(x + pad, y + pad, 
@@ -88,6 +89,30 @@ void draw_icon_button(UIElements* el){
     }
 }
 
+void draw_slider(UIElements* el){
+    float x = el->x;
+    float y = el->y;
+    int s = el->width;
+    float x1_slider = el->data.slider.line_px1;
+    float x2_slider = el->data.slider.line_px2;
+    float y_slider = el->data.slider.line_y;
+
+    float x1_rec = x;
+    float y1_rec = y;
+    float x2_rec = x + s;
+    float y2_rec = y + s;
+
+    float pad = s * 0.15;
+
+    al_draw_line(x1_slider, y_slider, x2_slider, y_slider, 
+        al_map_rgb(50, 50, 50), 3 + pad);
+
+    al_draw_filled_rectangle(x1_rec, y1_rec, 
+        x2_rec, y2_rec, 
+        al_map_rgb(0, 0, 0));
+
+}
+
 void draw_text_button(UIElements* el){
     ALLEGRO_FONT* font = el->is_hovering ? el->data.button.UIfont_s : el->data.button.UIfont;
 
@@ -114,8 +139,6 @@ void draw_button(UIElements* el){
 void draw_ui_elements(UIContext* ui){
     for(int i = 0; i < NMB_ELEMENTS; i++){
         UIElements* el = &ui->elements[i];
-
-        draw_debug_hitbox(el);
         
         if(!el->is_visible) continue;
 
@@ -127,8 +150,11 @@ void draw_ui_elements(UIContext* ui){
                 draw_button(el);
                 break;
             case TYPE_SLIDER:
+                //printf("drawing slider\n");
+                draw_slider(el);
                 break;
         }
+        draw_debug_hitbox(el);
     }
 }
 

@@ -9,8 +9,10 @@ void button_insertion_sort(StateContext* state, UIContext* ui, SortContext* sort
 void button_close_program(StateContext* state, UIContext* ui, SortContext* sort);
 void button_start_insertion(StateContext* state, UIContext* ui, SortContext* sort);
 void button_start_bubble(StateContext* state, UIContext* ui, SortContext* sort);
+void button_slider(StateContext* state, UIContext* ui, SortContext* sort);
 void handle_clicks(UIContext* ui, StateContext* stctx, SortContext* soctx);
-void handle_resize(RenderContext* render);
+void handle_dragging(UIContext* ui);
+void handle_sliding(UIContext* ui, RenderContext* render , SortContext* sort, float raw_mx, float raw_my);
 void program_loop(ProgramContext* program);
 
 #endif
