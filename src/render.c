@@ -21,6 +21,21 @@ void draw_scaled_render_target(RenderContext* render, UIContext* ui){
     );
 }
 
+void draw_debug_hitbox(UIElements* el) {
+    if (!el->is_visible) return;
+    
+    al_draw_rectangle(
+        el->x, 
+        el->y, 
+        el->x + el->width, 
+        el->y + el->height, 
+        al_map_rgb(255, 0, 0),
+        1.0
+    );
+    
+    al_draw_filled_circle(el->x, el->y, 2, al_map_rgb(0, 255, 0));
+}
+
 void draw_itens(DynamicArr* arr){
     for(int i = 0; i < arr->size; i++){
         float height = ((float)arr->item_arr[i].value / arr->max_number) * ITEM_CANVAS_HEIGHT;
@@ -150,7 +165,6 @@ void draw_ui_elements(UIContext* ui){
                 draw_button(el);
                 break;
             case TYPE_SLIDER:
-                //printf("drawing slider\n");
                 draw_slider(el);
                 break;
         }
@@ -190,22 +204,5 @@ void program_render(ProgramContext* program){
     }
     al_set_target_backbuffer(program->render.display);
     draw_scaled_render_target(&program->render, &program->ui);
-    // Dentro de program_render, ANTES de al_flip_display():
-
-    // 1. Pega a posição crua do mouse
-    ALLEGRO_MOUSE_STATE ms;
-    al_get_mouse_state(&ms);
-
-    // 2. Converte para lógico usando SUA função atual
-    float log_x, log_y;
-    get_mouse_logical_pos(&program->render, ms.x, ms.y, &log_x, &log_y);
-
-    // 3. Desenha a cruz no buffer da tela (acima de tudo)
-    // Convertemos DE VOLTA para tela para desenhar no lugar exato
-    float screen_x = (log_x * program->render.scale) + program->render.offset_x;
-    float screen_y = (log_y * program->render.scale) + program->render.offset_y;
-
-    al_draw_line(screen_x - 10, screen_y, screen_x + 10, screen_y, al_map_rgb(0, 255, 255), 2);
-    al_draw_line(screen_x, screen_y - 10, screen_x, screen_y + 10, al_map_rgb(0, 255, 255), 2);
     al_flip_display();
 }

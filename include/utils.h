@@ -6,7 +6,7 @@
 
 
 #define MIN_COLUMNS 10
-#define MAX_COLUMNS 500
+#define MAX_COLUMNS 100
 
 void must_init(bool test, const char* description);
 void register_event_sources(EventContext* event, RenderContext* render);
@@ -21,6 +21,5 @@ void create_text_button(UIContext* ui, RenderContext* render, int id, float x_pc
 void create_slider(UIContext* ui, SortContext* sort, RenderContext* render, int id, float x_pct, float y_pct, ButtonAction onClick);
 void swap(ItemArr *item_a, ItemArr *item_b);
 void update_ui_visibility(UIContext* ui, int current_state);
-void draw_debug_hitbox(UIElements* el);
 
 #endif

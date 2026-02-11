@@ -64,8 +64,6 @@ bool is_mouse_hovering(UIElements *el, RenderContext *ren, float mx, float my){
 
     bool inside_x = (mx >= el->x) && (mx <= el->x + el->width);
     bool inside_y = (my >= el->y) && (my <= el->y + el->height);
-
-    if(inside_x && inside_y && el->type == TYPE_SLIDER) printf("hovering slider");
     
     return inside_x && inside_y;
 }
@@ -76,7 +74,6 @@ void ui_update_hover_flag(UIContext* ui, RenderContext* render, float raw_mx, fl
 
     for(int i = 0; i < NMB_ELEMENTS; i++){
         UIElements* el = &ui->elements[i];
-        //printf("element %d is visible? %d\n", i, el->is_visible);
         if(el->type == TYPE_TEXT) continue;
 
         if(!el->is_visible){
@@ -193,11 +190,6 @@ void create_slider(UIContext* ui, SortContext* sort, RenderContext* render, int 
     el->onClick = onClick;
 
     el->data.slider.linked_value = &sort->array_size;
-    // S = MAX * X' / SI
-    // S = array_size
-    // MAX = MAX_COLUMNS
-    // X' = slider x pos
-    // SI = stripe x1 - stripe x2
 }
 
 void swap(ItemArr *item_a, ItemArr *item_b){
@@ -221,22 +213,4 @@ void update_ui_visibility(UIContext* ui, int current_state){
             ui->elements[i].is_visible = false;
         }
     }
-}
-
-// DEBUG FUNCTION
-void draw_debug_hitbox(UIElements* el) {
-    if (!el->is_visible) return;
-    
-    // Desenha a caixa exata que o is_mouse_hovering está usando
-    al_draw_rectangle(
-        el->x, 
-        el->y, 
-        el->x + el->width, 
-        el->y + el->height, 
-        al_map_rgb(255, 0, 0), // Vermelho
-        1.0 // Espessura fina
-    );
-    
-    // Desenha um ponto no X,Y para você saber onde é a âncora
-    al_draw_filled_circle(el->x, el->y, 2, al_map_rgb(0, 255, 0));
 }

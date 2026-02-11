@@ -8,6 +8,7 @@
 #define ITEM_CANVAS_WIDTH 900
 
 void draw_scaled_render_target(RenderContext* render, UIContext* ui);
+void draw_debug_hitbox(UIElements* el);
 void draw_itens(DynamicArr* arr);
 void draw_text(UIElements* el);
 void draw_icon_button(UIElements* el);

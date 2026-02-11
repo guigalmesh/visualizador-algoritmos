@@ -62,13 +62,6 @@ void button_slider(StateContext* state, UIContext* ui, SortContext* sort){
 
     el->data.slider.is_dragging = true;
 
-    printf("slider was pressed\n");
-
-    // S = MAX * X' / SI
-    // S = array_size
-    // MAX = MAX_COLUMNS
-    // X' = slider x pos
-    // SI = stripe x1 - stripe x2
 }
 
 void handle_clicks(UIContext* ui, StateContext* stctx, SortContext* soctx){
@@ -93,7 +86,6 @@ void handle_dragging(UIContext* ui){
         if(el->type == TYPE_BUTTON) continue;
 
         if(el->type == TYPE_SLIDER){
-            if(el->is_hovering == false) continue;
             el->data.slider.is_dragging = false;
         }
     }
